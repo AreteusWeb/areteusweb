@@ -1,0 +1,126 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: contact_submissions
+    // Document ID: auto-generated
+    // Fields:
+    //   - name: string (required, 1-100 chars)
+    //   - email: string (required, valid email format)
+    //   - message: string (required, 1-2000 chars)
+    //   - createdAt: timestamp (required)
+    //
+    // Collection: newsletter_subscriptions
+    // Document ID: auto-generated
+    // Fields:
+    //   - email: string (required, valid email format)
+    //   - createdAt: timestamp (required)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "rebeca.ps.204@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidEmail(email) {
+      return email is string &&
+        email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    function isValidContactSubmission(data) {
+      return data.keys().hasAll(['name', 'email', 'message', 'createdAt']) &&
+             data.keys().hasOnly(['name', 'email', 'message', 'createdAt']) &&
+             data.name is string && data.name.size() >= 1 && data.name.size() <= 100 &&
+             isValidEmail(data.email) &&
+             data.message is string && data.message.size() >= 1 && data.message.size() <= 2000 &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidNewsletterSubscription(data) {
+      return data.keys().hasAll(['email', 'createdAt']) &&
+             data.keys().hasOnly(['email', 'createdAt']) &&
+             isValidEmail(data.email) &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidOrder(data) {
+      return data.keys().hasAll(['customerName', 'customerEmail', 'address', 'amount', 'status', 'createdAt']) &&
+             data.customerName is string && data.customerName.size() >= 1 && data.customerName.size() <= 100 &&
+             isValidEmail(data.customerEmail) &&
+             data.address is string && data.address.size() >= 1 && data.address.size() <= 500 &&
+             data.amount is number && data.amount > 0 &&
+             data.status in ['pending', 'completed', 'failed'] &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidReferral(data) {
+      return data.keys().hasAll(['referrerName', 'referrerEmail', 'friendEmail', 'status', 'createdAt']) &&
+             data.referrerName is string && data.referrerName.size() >= 1 && data.referrerName.size() <= 100 &&
+             isValidEmail(data.referrerEmail) &&
+             isValidEmail(data.friendEmail) &&
+             data.status in ['pending', 'converted'] &&
+             data.createdAt is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /contact_submissions/{submissionId} {
+      // Anyone can submit a contact form
+      allow create: if isValidContactSubmission(request.resource.data);
+      // Only admins can read contact submissions
+      allow read: if isAdmin();
+      // No updates or deletes allowed for security
+      allow update, delete: if false;
+    }
+
+    match /newsletter_subscriptions/{subscriptionId} {
+      // Anyone can subscribe
+      allow create: if isValidNewsletterSubscription(request.resource.data);
+      // Only admins can read subscriptions
+      allow read: if isAdmin();
+      // No updates or deletes allowed
+      allow update, delete: if false;
+    }
+
+    match /orders/{orderId} {
+      // Anyone can create an order (after successful payment)
+      allow create: if isValidOrder(request.resource.data);
+      // Only admins can read orders
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /referrals/{referralId} {
+      // Anyone can create a referral
+      allow create: if isValidReferral(request.resource.data);
+      // Allow reading to check for referrals during checkout (by friendEmail)
+      allow read: if true; 
+      // Allow updating status to 'converted'
+      allow update: if (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'convertedAt']) && 
+                        request.resource.data.status == 'converted') || isAdmin();
+      allow delete: if false;
+    }
+
+    match /users/{userId} {
+      // Users can read/write their own profile
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

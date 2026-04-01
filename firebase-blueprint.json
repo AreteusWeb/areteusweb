@@ -1,0 +1,138 @@
+{
+  "entities": {
+    "ContactSubmission": {
+      "title": "Contact Submission",
+      "description": "A message sent via the contact form.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the person sending the message."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address of the sender."
+        },
+        "message": {
+          "type": "string",
+          "description": "The content of the message."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the message was sent."
+        }
+      },
+      "required": ["name", "email", "message", "createdAt"]
+    },
+    "NewsletterSubscription": {
+      "title": "Newsletter Subscription",
+      "description": "An email address subscribed to the newsletter.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address of the subscriber."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the subscription occurred."
+        }
+      },
+      "required": ["email", "createdAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A purchase made in the store.",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "description": "The name of the customer."
+        },
+        "customerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address of the customer."
+        },
+        "address": {
+          "type": "string",
+          "description": "The shipping address."
+        },
+        "amount": {
+          "type": "number",
+          "description": "The total amount of the order."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "completed", "failed"],
+          "description": "The status of the order."
+        },
+        "referrerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "The email of the person who referred this customer."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the order was created."
+        }
+      },
+      "required": ["customerName", "customerEmail", "address", "amount", "status", "createdAt"]
+    },
+    "Referral": {
+      "title": "Referral",
+      "description": "A referral made by a user.",
+      "type": "object",
+      "properties": {
+        "referrerName": {
+          "type": "string",
+          "description": "The name of the referrer."
+        },
+        "referrerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "The email of the referrer."
+        },
+        "friendEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "The email of the friend being referred."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "converted"],
+          "description": "The status of the referral."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the referral was made."
+        }
+      },
+      "required": ["referrerName", "referrerEmail", "friendEmail", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/contact_submissions/{submissionId}": {
+      "schema": "ContactSubmission",
+      "description": "Collection of contact form submissions."
+    },
+    "/newsletter_subscriptions/{subscriptionId}": {
+      "schema": "NewsletterSubscription",
+      "description": "Collection of newsletter subscriptions."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of store orders."
+    },
+    "/referrals/{referralId}": {
+      "schema": "Referral",
+      "description": "Collection of referrals."
+    }
+  }
+}
