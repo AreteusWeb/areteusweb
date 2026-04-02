@@ -9,3 +9,4 @@ coverage/
 # Secrets
 .env
 firebase-applet-config.json
+.env.example
