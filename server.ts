@@ -80,16 +80,13 @@ async function startServer() {
   // API Routes
   app.post("/api/subscribe", async (req, res) => {
     const { email } = req.body;
-    console.log(`[API] Subscription request for: ${email}`);
-    
     try {
       await resend.emails.send({
         from: 'ARETEUS <onboarding@resend.dev>',
-        to: email,
+        to: 'rebeca.ps.204@gmail.com', // ← fijo por ahora para probar
         subject: 'Welcome to ARETEUS',
         html: templates.subscription(),
       });
-      
       res.status(200).json({ message: "Subscription successful" });
     } catch (error) {
       console.error('[RESEND] Subscription error:', error);
@@ -99,25 +96,23 @@ async function startServer() {
 
   app.post("/api/contact", async (req, res) => {
     const { name, email, message } = req.body;
-    console.log(`[API] Contact form submission:`, { name, email, message });
-    
     try {
-      // Send to Admin
+      // Send to Admin ✅
       await resend.emails.send({
         from: 'ARETEUS <onboarding@resend.dev>',
-        to: 'rebeca.ps.204@gmail.com', // Admin email
+        to: 'rebeca.ps.204@gmail.com',
         subject: `New Contact Submission from ${name}`,
         html: templates.contactAdmin(name, email, message),
       });
 
-      // Send Confirmation to User
-      await resend.emails.send({
-        from: 'ARETEUS <onboarding@resend.dev>',
-        to: email,
-        subject: 'We received your message',
-        html: templates.contactUser(name),
-      });
-      
+      // Send Confirmation to User — COMENTADO hasta tener dominio
+      // await resend.emails.send({
+      //   from: 'ARETEUS <onboarding@resend.dev>',
+      //   to: email,
+      //   subject: 'We received your message',
+      //   html: templates.contactUser(name),
+      // });
+    
       res.status(200).json({ message: "Message sent successfully" });
     } catch (error) {
       console.error('[RESEND] Contact error:', error);
@@ -147,22 +142,22 @@ async function startServer() {
       // Send to Referrer
       await resend.emails.send({
         from: 'ARETEUS <onboarding@resend.dev>',
-        to: referrerEmail,
+        to: 'rebeca.ps.204@gmail.com',
         subject: 'Referral Invitations Sent',
         html: templates.referralReferrer(referrerName, friendEmails),
       });
-
+//envez del to referrerEmail, lo dejo fijo para probar por ahora
       // Send to Friends
-      const friendPromises = friendEmails.map((email: string) => 
-        resend.emails.send({
-          from: 'ARETEUS <onboarding@resend.dev>',
-          to: email,
-          subject: `${referrerName} invited you to ARETEUS`,
-          html: templates.referralFriend(referrerName),
-        })
-      );
+      //const friendPromises = friendEmails.map((email: string) => 
+      //  resend.emails.send({
+      //    from: 'ARETEUS <onboarding@resend.dev>',
+      //    to: email,
+      //    subject: `${referrerName} invited you to ARETEUS`,
+      //    html: templates.referralFriend(referrerName),
+      //  })
+      //);
 
-      await Promise.all(friendPromises);
+      //await Promise.all(friendPromises);
       
       res.status(200).json({ message: "Referral emails sent" });
     } catch (error) {

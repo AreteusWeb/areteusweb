@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+# Secrets
+.env
+firebase-applet-config.json

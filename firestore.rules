@@ -73,8 +73,7 @@ service cloud.firestore {
              data.referrerName is string && data.referrerName.size() >= 1 && data.referrerName.size() <= 100 &&
              isValidEmail(data.referrerEmail) &&
              isValidEmail(data.friendEmail) &&
-             data.status in ['pending', 'converted'] &&
-             data.createdAt is timestamp;
+             data.status in ['pending', 'converted'];
     }
 
     // ===============================================================
