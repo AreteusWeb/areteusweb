@@ -1,3 +1,3 @@
 areteus company website
 
-deployed here:  https://gen-lang-client-0040384528.web.app/contact
+deployed here: https://project-37274da8-813d-4f1e-8b9.web.app/
