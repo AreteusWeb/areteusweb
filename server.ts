@@ -57,7 +57,7 @@ const templates = {
       <p style="color: #64748b; font-size: 16px; line-height: 1.6;">Your friend <strong>${referrerName}</strong> thinks you'd love ARETEUS clinical-grade heart health wearables.</p>
       <p style="color: #64748b; font-size: 16px; line-height: 1.6;">Join us in redefining the future of cardiology.</p>
       <div style="margin-top: 32px;">
-        <a href="https://areteus.us/store" style="background: #2563eb; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Visit Store</a>
+        <a href="https://areteus.us" style="background: #2563eb; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Visit Store</a>
       </div>
       <p style="color: #64748b; font-size: 16px; line-height: 1.6; margin-top: 32px;">Best regards,<br>The ARETEUS Team</p>
     </div>
@@ -83,7 +83,7 @@ async function startServer() {
     console.log(`[API] Subscription request for: ${email}`);
     try {
       await resend.emails.send({
-        from: 'ARETEUS <noreply@areteus.us>',
+        from: 'ARETEUS <noreply@areteus.com>',
         to: email,
         subject: 'Welcome to ARETEUS',
         html: templates.subscription(email),
@@ -101,7 +101,7 @@ async function startServer() {
     try {
       // Send to Admin
       await resend.emails.send({
-        from: 'ARETEUS <noreply@areteus.us>',
+        from: 'ARETEUS <noreply@areteus.com>',
         to: 'web@areteus.us',
         subject: `New Contact Submission from ${name}`,
         html: templates.contactAdmin(name, email, message),
@@ -109,7 +109,7 @@ async function startServer() {
 
       // Send Confirmation to User
       await resend.emails.send({
-        from: 'ARETEUS <noreply@areteus.us>',
+        from: 'ARETEUS <noreply@areteus.com>',
         to: email,
         subject: 'We received your message',
         html: templates.contactUser(name),
@@ -126,7 +126,7 @@ async function startServer() {
     const { name, email, productName, amount } = req.body;
     try {
       await resend.emails.send({
-        from: 'ARETEUS <noreply@areteus.us>',
+        from: 'ARETEUS <noreply@areteus.com>',
         to: email,
         subject: 'Order Confirmed - ARETEUS',
         html: templates.orderConfirmation(name, productName, amount),
@@ -143,7 +143,7 @@ async function startServer() {
     try {
       // Send acknowledgement to Referrer
       await resend.emails.send({
-        from: 'ARETEUS <noreply@areteus.us>',
+        from: 'ARETEUS <noreply@areteus.com>',
         to: referrerEmail,
         subject: 'Referral Invitations Sent',
         html: templates.referralReferrer(referrerName, friendEmails),
@@ -152,7 +152,7 @@ async function startServer() {
       // Send invitation to each Friend
       const friendPromises = friendEmails.map((friendEmail: string) =>
         resend.emails.send({
-          from: 'ARETEUS <noreply@areteus.us>',
+          from: 'ARETEUS <noreply@areteus.com>',
           to: friendEmail,
           subject: `${referrerName} invited you to ARETEUS`,
           html: templates.referralFriend(referrerName),
