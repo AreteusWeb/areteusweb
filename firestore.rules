@@ -58,24 +58,6 @@ service cloud.firestore {
              data.createdAt is timestamp;
     }
 
-    function isValidOrder(data) {
-      return data.keys().hasAll(['customerName', 'customerEmail', 'address', 'amount', 'status', 'createdAt']) &&
-             data.customerName is string && data.customerName.size() >= 1 && data.customerName.size() <= 100 &&
-             isValidEmail(data.customerEmail) &&
-             data.address is string && data.address.size() >= 1 && data.address.size() <= 500 &&
-             data.amount is number && data.amount > 0 &&
-             data.status in ['pending', 'completed', 'failed'] &&
-             data.createdAt is timestamp;
-    }
-
-    function isValidReferral(data) {
-      return data.keys().hasAll(['referrerName', 'referrerEmail', 'friendEmail', 'status', 'createdAt']) &&
-             data.referrerName is string && data.referrerName.size() >= 1 && data.referrerName.size() <= 100 &&
-             isValidEmail(data.referrerEmail) &&
-             isValidEmail(data.friendEmail) &&
-             data.status in ['pending', 'converted'];
-    }
-
     // ===============================================================
     // Rules
     // ===============================================================
@@ -96,25 +78,6 @@ service cloud.firestore {
       allow read: if isAdmin();
       // No updates or deletes allowed
       allow update, delete: if false;
-    }
-
-    match /orders/{orderId} {
-      // Anyone can create an order (after successful payment)
-      allow create: if isValidOrder(request.resource.data);
-      // Only admins can read orders
-      allow read: if isAdmin();
-      allow update, delete: if false;
-    }
-
-    match /referrals/{referralId} {
-      // Anyone can create a referral
-      allow create: if isValidReferral(request.resource.data);
-      // Allow reading to check for referrals during checkout (by friendEmail)
-      allow read: if true; 
-      // Allow updating status to 'converted'
-      allow update: if (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'convertedAt']) && 
-                        request.resource.data.status == 'converted') || isAdmin();
-      allow delete: if false;
     }
 
     match /users/{userId} {
