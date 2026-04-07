@@ -47,7 +47,7 @@ export default function ReferralForm() {
 
       // 2. Send Referral Emails via Resend Backend
       try {
-        await fetch('/api/send-referral-emails', {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/send-referral-emails`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

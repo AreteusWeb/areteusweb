@@ -32,7 +32,7 @@ export default function CheckoutForm({ product, onSuccess }: CheckoutFormProps) 
 
     try {
       // 1. Create Payment Intent on the server
-      const response = await fetch('/api/create-payment-intent', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/create-payment-intent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: product.price, customerEmail: formData.email }),
@@ -97,7 +97,7 @@ export default function CheckoutForm({ product, onSuccess }: CheckoutFormProps) 
 
         // 5. Send Order Confirmation Email
         try {
-          await fetch('/api/send-order-confirmation', {
+          await fetch(`${import.meta.env.VITE_API_URL}/api/send-order-confirmation`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

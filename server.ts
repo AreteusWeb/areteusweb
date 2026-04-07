@@ -1,6 +1,5 @@
 import express from "express";
-import path from "path";
-import { createServer as createViteServer } from "vite";
+import cors from "cors";
 import Stripe from 'stripe';
 import dotenv from 'dotenv';
 import { Resend } from 'resend';
@@ -10,7 +9,6 @@ dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder');
 const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder');
 
-// Email Templates
 const templates = {
   contactAdmin: (name: string, email: string, message: string) => `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; border: 1px solid #f1f5f9; border-radius: 24px;">
@@ -55,7 +53,6 @@ const templates = {
       <h1 style="font-size: 24px; font-weight: 900; color: #0f172a; margin-bottom: 24px;">You've been invited to ARETEUS</h1>
       <p style="color: #64748b; font-size: 16px; line-height: 1.6;">Hi,</p>
       <p style="color: #64748b; font-size: 16px; line-height: 1.6;">Your friend <strong>${referrerName}</strong> thinks you'd love ARETEUS clinical-grade heart health wearables.</p>
-      <p style="color: #64748b; font-size: 16px; line-height: 1.6;">Join us in redefining the future of cardiology.</p>
       <div style="margin-top: 32px;">
         <a href="https://areteus.us" style="background: #2563eb; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Visit Store</a>
       </div>
@@ -73,14 +70,20 @@ const templates = {
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = process.env.PORT || 3000;
+
+  app.use(cors({
+    origin: [
+      "http://localhost:5173",
+      "https://project-37274da8-813d-4f1e-8b9.web.app",
+      "https://areteus.us"
+    ]
+  }));
 
   app.use(express.json());
 
-  // API Routes
   app.post("/api/subscribe", async (req, res) => {
     const { email } = req.body;
-    console.log(`[API] Subscription request for: ${email}`);
     try {
       await resend.emails.send({
         from: 'ARETEUS <noreply@areteus.com>',
@@ -97,24 +100,19 @@ async function startServer() {
 
   app.post("/api/contact", async (req, res) => {
     const { name, email, message } = req.body;
-    console.log(`[API] Contact form submission:`, { name, email });
     try {
-      // Send to Admin
       await resend.emails.send({
         from: 'ARETEUS <noreply@areteus.com>',
         to: 'web@areteus.us',
         subject: `New Contact Submission from ${name}`,
         html: templates.contactAdmin(name, email, message),
       });
-
-      // Send Confirmation to User
       await resend.emails.send({
         from: 'ARETEUS <noreply@areteus.com>',
         to: email,
         subject: 'We received your message',
         html: templates.contactUser(name),
       });
-
       res.status(200).json({ message: "Message sent successfully" });
     } catch (error) {
       console.error('[RESEND] Contact error:', error);
@@ -141,15 +139,12 @@ async function startServer() {
   app.post("/api/send-referral-emails", async (req, res) => {
     const { referrerName, referrerEmail, friendEmails } = req.body;
     try {
-      // Send acknowledgement to Referrer
       await resend.emails.send({
         from: 'ARETEUS <noreply@areteus.com>',
         to: referrerEmail,
         subject: 'Referral Invitations Sent',
         html: templates.referralReferrer(referrerName, friendEmails),
       });
-
-      // Send invitation to each Friend
       const friendPromises = friendEmails.map((friendEmail: string) =>
         resend.emails.send({
           from: 'ARETEUS <noreply@areteus.com>',
@@ -158,9 +153,7 @@ async function startServer() {
           html: templates.referralFriend(referrerName),
         })
       );
-
       await Promise.all(friendPromises);
-
       res.status(200).json({ message: "Referral emails sent" });
     } catch (error) {
       console.error('[RESEND] Referral error:', error);
@@ -184,23 +177,8 @@ async function startServer() {
     }
   });
 
-  // Vite middleware for development
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
-    });
-  }
-
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
 }
 
