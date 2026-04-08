@@ -103,7 +103,8 @@ async function startServer() {
     try {
       await resend.emails.send({
         from: 'ARETEUS <noreply@areteus.com>',
-        to: 'web@areteus.us',
+        to: 'info@areteus.us',
+        //to: 'web@areteus.us', for testing purposes
         subject: `New Contact Submission from ${name}`,
         html: templates.contactAdmin(name, email, message),
       });
