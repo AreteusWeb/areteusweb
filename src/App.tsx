@@ -8,6 +8,9 @@ import Careers from '@/pages/Careers';
 import Partners from '@/pages/Partners';
 import Contact from '@/pages/Contact';
 import Store from '@/pages/Store';
+import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
+import TermsOfService from '@/pages/legal/TermsOfService';
+import CookiePolicy from '@/pages/legal/CookiePolicy';
 import { motion, AnimatePresence } from 'motion/react';
 import { FirebaseProvider } from '@/components/FirebaseProvider';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -27,6 +30,9 @@ export default function App() {
                 <Route path="/partners" element={<PageWrapper><Partners /></PageWrapper>} />
                 <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
                 <Route path="/store" element={<PageWrapper><Store /></PageWrapper>} />
+                <Route path="/privacy" element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />
+                <Route path="/terms" element={<PageWrapper><TermsOfService /></PageWrapper>} />
+                <Route path="/cookies" element={<PageWrapper><CookiePolicy /></PageWrapper>} />
               </Routes>
             </AnimatePresence>
             <Footer />

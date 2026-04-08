@@ -47,9 +47,9 @@ export default function Footer() {
             <div className="col-span-2 md:col-span-1">
               <h4 className="text-[10px] font-black text-slate-900 uppercase tracking-[0.3em] mb-8 md:mb-10">Legal</h4>
               <ul className="space-y-4 md:space-y-6">
-                <li><a href="#" className="text-base md:text-lg text-slate-500 hover:text-blue-600 transition-colors font-medium">Privacy Policy</a></li>
-                <li><a href="#" className="text-base md:text-lg text-slate-500 hover:text-blue-600 transition-colors font-medium">Terms of Service</a></li>
-                <li><a href="#" className="text-base md:text-lg text-slate-500 hover:text-blue-600 transition-colors font-medium">Cookie Policy</a></li>
+                <li><Link to="/privacy" className="text-base md:text-lg text-slate-500 hover:text-blue-600 transition-colors font-medium">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="text-base md:text-lg text-slate-500 hover:text-blue-600 transition-colors font-medium">Terms of Service</Link></li>
+                <li><Link to="/cookies" className="text-base md:text-lg text-slate-500 hover:text-blue-600 transition-colors font-medium">Cookie Policy</Link></li>
               </ul>
             </div>
           </div>
