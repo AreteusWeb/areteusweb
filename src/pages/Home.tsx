@@ -1,260 +1,306 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import {
-  Activity,
   ArrowRight,
-  Heart,
-  RefreshCw,
-  Shield,
-  Smartphone,
-  Users,
-  Move3D,
-  Workflow,
-  RadioTower,
-  Stethoscope,
+  BarChart3,
+  Database,
   Dumbbell,
+  Gamepad2,
+  Layers,
   Microscope,
-  Gamepad2
+  Radio,
+  Sparkles,
+  Stethoscope,
+  TabletSmartphone,
+  Target,
+  Watch,
 } from 'lucide-react';
 
-const productOverview = [
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-48px' },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+} as const;
+
+const chestpadSensors = ['ECG', 'SpO2', 'Temperature', 'Blood pressure'];
+
+const fullBodyHighlights = ['Full body motion tracking', 'VR compatibility', 'Medical applications'];
+
+const platformFeatures = [
   {
-    name: 'ChestPad',
-    description: 'Focused wearable chest sensor for continuous, reliable cardiopulmonary monitoring.',
-    image: 'https://i.imgur.com/FyarXK2.png',
-    benefits: ['Chest-focused monitoring', 'Fast setup and simple workflow', 'Real-time vital insights']
+    title: 'Real-time monitoring',
+    description: 'Live streams tuned for clinical review and performance labs.',
+    icon: Radio,
   },
   {
-    name: 'ARETEUS Full Body Tracker',
-    description: 'Distributed full-body motion tracking platform for VR, biomechanics, and advanced health analytics.',
-    image: 'https://i.imgur.com/LcMM8uj.jpeg',
-    benefits: ['Full-body motion visibility', 'Distributed wearable sensor nodes', 'Low-latency live data']
-  }
+    title: 'Multi-sensor system',
+    description: 'Unified architecture from chest-centric to distributed nodes.',
+    icon: Layers,
+  },
+  {
+    title: 'High precision data',
+    description: 'Calibration-minded engineering for trustworthy measurements.',
+    icon: Target,
+  },
+  {
+    title: 'Cross-platform integration',
+    description: 'Fits into existing tools, workflows, and deployment models.',
+    icon: TabletSmartphone,
+  },
 ];
 
-const areteusFeatures = [
-  { text: 'Full-body tracking', icon: Move3D },
-  { text: 'Distributed sensors', icon: Workflow },
-  { text: 'Real-time data stream', icon: RadioTower },
-  { text: 'OTA firmware updates', icon: RefreshCw }
-];
-
-const chestpadFeatures = [
-  { text: 'Chest-centered sensing for cleaner signal quality', icon: Heart },
-  { text: 'Simple, wearable-first experience from setup to monitoring', icon: Shield },
-  { text: 'Real-time vital data for clinicians, athletes, and users', icon: Activity }
+const howSteps = [
+  {
+    step: '01',
+    title: 'Wear device',
+    description: 'Comfortable fit for continuous capture without friction.',
+    icon: Watch,
+  },
+  {
+    step: '02',
+    title: 'Collect data',
+    description: 'Sensors stream vitals and motion with dependable throughput.',
+    icon: Database,
+  },
+  {
+    step: '03',
+    title: 'Analyze in real time',
+    description: 'See trends as they form with responsive analytics.',
+    icon: BarChart3,
+  },
 ];
 
 const useCases = [
   { title: 'Healthcare', icon: Stethoscope },
-  { title: 'Sports Performance', icon: Dumbbell },
-  { title: 'Research & Biomechanics', icon: Microscope },
-  { title: 'VR / Motion Tracking', icon: Gamepad2 }
+  { title: 'Sports performance', icon: Dumbbell },
+  { title: 'Research & biomechanics', icon: Microscope },
+  { title: 'VR / motion', icon: Gamepad2 },
 ];
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
-      {/* Hero */}
-      <section className="relative pt-36 md:pt-48 pb-24 md:pb-32 px-6 bg-grid">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full blur-[120px] opacity-60 -z-10" />
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
-              <Activity className="w-3.5 h-3.5 text-blue-600" />
-              ARETEUS Technology Platform
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tight text-slate-900 leading-[1.05] md:leading-[0.95] mb-6 md:mb-10 font-display">
-              Next-Generation <span className="text-gradient">Wearable Sensing</span> Technology
+    <main className="overflow-x-hidden">
+      {/* Hero — no eyebrow chips; typography-only hierarchy */}
+      <section className="relative flex min-h-[min(100svh,52rem)] flex-col justify-center bg-grid px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 md:min-h-0 md:py-28 md:pt-40 lg:py-36 lg:pt-44">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute right-0 top-1/4 h-48 w-48 -translate-y-1/2 rounded-full bg-blue-200/35 blur-3xl sm:h-72 sm:w-72 md:top-1/3 md:h-[28rem] md:w-[28rem]" />
+          <div className="absolute bottom-0 left-0 h-40 w-40 rounded-full bg-cyan-200/25 blur-3xl sm:h-56 sm:w-56" />
+        </div>
+
+        <div className="mx-auto w-full max-w-4xl text-center">
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
+            <h1 className="font-display text-4xl font-black leading-[1.1] tracking-tight text-slate-900 sm:text-5xl md:text-7xl lg:text-8xl">
+              Next-Generation{' '}
+              <span className="text-gradient">Wearable Health Technology</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-base md:text-2xl text-slate-500 leading-relaxed mb-10 md:mb-14 font-medium">
-              ARETEUS builds premium sensing systems for focused chest monitoring and full-body motion intelligence across healthcare, sports, and research.
+            <p className="mx-auto mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-slate-600 sm:mt-5 sm:text-lg md:text-xl md:leading-relaxed">
+              Pioneering intelligent monitoring systems—advanced design and development for wearables that serve both medical rigor and real-world performance.
+            </p>
+            <div className="mx-auto mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
+              <Link
+                to="/store"
+                className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-[15px] font-medium text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] sm:flex-initial sm:min-w-[180px]"
+              >
+                Explore products
+                <ArrowRight className="h-4 w-4 opacity-90" aria-hidden />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 px-6 py-3.5 text-[15px] font-medium text-slate-800 shadow-sm backdrop-blur transition hover:border-slate-300 hover:bg-white active:scale-[0.99] sm:flex-initial sm:min-w-[180px]"
+              >
+                Contact us
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* About — single column, no badge */}
+      <section className="border-y border-slate-200/90 bg-white px-4 py-10 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <motion.div {...fadeUp}>
+            <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">Built for innovation</h2>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+              ARETEUS focuses on wearable hardware and signal quality—minimal friction, maximum clarity—so teams can trust what they measure.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Products Overview */}
-      <section className="py-24 md:py-32 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-            <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-5 tracking-tight font-display">
-              Two Products. <span className="text-gradient">One Platform Vision.</span>
-            </h2>
-            <p className="text-base md:text-xl text-slate-500 font-medium">
-              Choose the product that fits your sensing needs, from focused chest monitoring to distributed full-body tracking.
+      {/* Products — única sección de productos (sin duplicar más abajo) */}
+      <section id="products" className="scroll-mt-24 px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <motion.div {...fadeUp} className="mb-8 text-center sm:mb-10 md:mb-12">
+            <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">Products</h2>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:mt-3 sm:text-base">
+              Two lines—chest-centered vitals and full-body motion—each engineered for different environments.
             </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
-            {productOverview.map((product, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.8 }}
-                className="group bg-white border border-slate-200 rounded-[28px] md:rounded-[40px] p-6 md:p-9 shadow-[0_16px_60px_-30px_rgba(15,23,42,0.25)] hover:-translate-y-1 hover:shadow-[0_24px_80px_-35px_rgba(15,23,42,0.35)] transition-all duration-500"
-              >
-                <div className="rounded-2xl md:rounded-[28px] overflow-hidden border border-slate-100 mb-6">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <h3 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight font-display mb-4">{product.name}</h3>
-                <p className="text-slate-500 font-medium leading-relaxed mb-6">{product.description}</p>
-                <ul className="space-y-3 mb-8">
-                  {product.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-center gap-3 text-slate-700">
-                      <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center">
-                        <Activity className="w-3.5 h-3.5 text-blue-600" />
-                      </div>
-                      <span className="text-sm md:text-base font-semibold">{benefit}</span>
+          </motion.div>
+
+          {/* Chestpad */}
+          <motion.article
+            {...fadeUp}
+            className="mb-6 overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_12px_40px_-24px_rgba(15,23,42,0.2)] sm:mb-8 sm:rounded-3xl md:mb-10"
+          >
+            <div className="grid gap-0 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] lg:items-stretch">
+              <div className="border-b border-slate-100 p-5 sm:p-7 md:p-9 lg:border-b-0 lg:border-r">
+                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 sm:text-xs">Medical · fitness</p>
+                <h3 className="mt-2 font-display text-2xl font-black text-slate-900 sm:text-3xl md:text-4xl">ARETEUS Chestpad</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:mt-3 sm:text-[15px]">
+                  Continuous cardiopulmonary insight from a chest-focused wearable—appropriate for clinical pathways and demanding training.
+                </p>
+                <ul className="mt-5 grid gap-2 sm:mt-6" role="list">
+                  {chestpadSensors.map((label) => (
+                    <li
+                      key={label}
+                      className="flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2.5 text-sm font-medium text-slate-800 sm:px-4"
+                    >
+                      <span className="text-slate-400">·</span>
+                      {label}
                     </li>
                   ))}
                 </ul>
-                <Link
-                  to="/store"
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-blue-500 transition-colors duration-300"
-                >
-                  View Product
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                <div className="mt-6 sm:mt-8">
+                  <Link
+                    to="/store"
+                    className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-[15px] font-medium text-white transition hover:bg-slate-800 sm:w-auto sm:px-6"
+                  >
+                    Explore product
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
+              </div>
+              <div className="relative aspect-[16/11] min-h-[180px] bg-slate-100 sm:aspect-auto sm:min-h-[220px] lg:min-h-full">
+                <img
+                  src="https://i.imgur.com/FyarXK2.png"
+                  alt="ARETEUS Chestpad"
+                  className="h-full w-full object-cover object-center"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </motion.article>
+
+          {/* Full Body Tracker */}
+          <motion.article
+            {...fadeUp}
+            transition={{ ...fadeUp.transition, delay: 0.05 }}
+            className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-[0_20px_50px_-22px_rgba(2,6,23,0.65)] sm:rounded-3xl"
+          >
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_90%_20%,rgba(34,211,238,0.12),transparent_55%)]" />
+            <div className="relative grid gap-0 lg:grid-cols-[minmax(0,0.95fr)_1.05fr] lg:items-stretch">
+              <div className="relative order-2 aspect-[16/11] min-h-[180px] bg-slate-900 sm:aspect-auto sm:min-h-[220px] lg:order-1 lg:min-h-full">
+                <img
+                  src="https://i.imgur.com/LcMM8uj.jpeg"
+                  alt="ARETEUS Full Body Tracker"
+                  className="h-full w-full object-cover object-center opacity-[0.97]"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="order-1 border-b border-white/10 p-5 sm:p-7 md:p-9 lg:order-2 lg:border-b-0 lg:border-l lg:border-white/10">
+                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan-200/80 sm:text-xs">Motion · spatial</p>
+                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">ARETEUS Full Body Tracker</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:mt-3 sm:text-[15px]">
+                  Distributed capture for full-body motion—built for immersive environments, biomechanics labs, and advanced analytics.
+                </p>
+                <ul className="mt-5 space-y-2 sm:mt-6" role="list">
+                  {fullBodyHighlights.map((label) => (
+                    <li key={label} className="flex items-start gap-2.5 text-sm text-slate-100 sm:text-[15px]">
+                      <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400/90" aria-hidden />
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 sm:mt-8">
+                  <Link
+                    to="/store"
+                    className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-[15px] font-medium text-slate-950 transition hover:bg-cyan-300 sm:w-auto sm:px-6"
+                  >
+                    Explore product
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.article>
+        </div>
+      </section>
+
+      {/* Platform features — distinct from product duplication */}
+      <section className="border-t border-slate-200/90 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <motion.div {...fadeUp} className="mb-8 text-center md:mb-11">
+            <h2 className="font-display text-3xl font-black text-slate-900 sm:text-4xl md:text-6xl">Platform</h2>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:text-base">Shared engineering principles across ARETEUS systems.</p>
+          </motion.div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:gap-5">
+            {platformFeatures.map((item, index) => (
+              <motion.div
+                key={item.title}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: index * 0.03 }}
+                className="rounded-2xl border border-slate-200/90 bg-white p-5 transition hover:border-slate-300 hover:shadow-md sm:p-6 md:p-7"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-white">
+                  <item.icon className="h-[1.15rem] w-[1.15rem]" aria-hidden />
+                </div>
+                <h3 className="mt-4 font-display text-base font-semibold text-slate-900 sm:text-lg">{item.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{item.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ARETEUS Dedicated Feature Section */}
-      <section className="py-24 md:py-32 px-6 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-dark opacity-20" />
-        <div className="absolute top-0 right-0 w-[720px] h-[720px] bg-blue-500/20 rounded-full blur-[120px] -z-10" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
-              ARETEUS System
-            </div>
-            <h2 className="text-3xl md:text-6xl font-black mb-6 tracking-tight leading-[1.05] font-display">
-              Full Body Tracking <span className="text-blue-400">Without Compromise</span>
-            </h2>
-            <p className="text-base md:text-xl text-slate-300 mb-8 md:mb-10 font-medium leading-relaxed">
-              Built for advanced motion intelligence, ARETEUS combines distributed wearable nodes and centralized control for accurate, scalable full-body data capture.
-            </p>
-            <ul className="space-y-4">
-              {areteusFeatures.map((feature, idx) => (
-                <li key={idx} className="flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400">
-                    <feature.icon className="w-5 h-5" />
-                  </div>
-                  <span className="font-bold text-slate-100">{feature.text}</span>
-                </li>
-              ))}
-            </ul>
+      {/* How it works */}
+      <section className="bg-white px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <motion.div {...fadeUp} className="mb-8 text-center md:mb-11">
+            <h2 className="font-display text-3xl font-black text-slate-900 sm:text-4xl md:text-6xl">How it works</h2>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:text-base">From device to insight.</p>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-          >
-            <div className="rounded-[28px] md:rounded-[40px] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm">
-              <img
-                src="https://i.imgur.com/LcMM8uj.jpeg"
-                alt="ARETEUS Full Body Tracker visual"
-                className="w-full aspect-[4/3] object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ChestPad Dedicated Feature Section */}
-      <section className="py-24 md:py-32 px-6 bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1"
-          >
-            <div className="rounded-[28px] md:rounded-[40px] overflow-hidden border border-slate-100 shadow-premium">
-              <img
-                src="https://i.imgur.com/FyarXK2.png"
-                alt="ChestPad wearable sensor"
-                className="w-full aspect-[4/3] object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="order-1 lg:order-2"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
-              ChestPad
-            </div>
-            <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.05] font-display">
-              Focused Chest Monitoring for <span className="text-gradient">Everyday Precision</span>
-            </h2>
-            <p className="text-base md:text-xl text-slate-500 font-medium leading-relaxed mb-8">
-              ChestPad delivers a streamlined wearable experience for high-fidelity chest monitoring, built for ease of use and reliable real-time insight.
-            </p>
-            <ul className="space-y-4">
-              {chestpadFeatures.map((feature, idx) => (
-                <li key={idx} className="flex items-center gap-4 text-slate-700">
-                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
-                    <feature.icon className="w-5 h-5" />
-                  </div>
-                  <span className="font-bold">{feature.text}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Use Cases */}
-      <section className="py-24 md:py-28 px-6 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16">
-            <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-5 tracking-tight font-display">
-              Applications Across High-Impact Domains
-            </h2>
-            <p className="text-base md:text-xl text-slate-500 font-medium">
-              Both products are built to support practical outcomes in medicine, performance, immersive technology, and science.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-            {useCases.map((useCase, idx) => (
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4 lg:gap-6">
+            {howSteps.map((step, index) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.05 }}
-                className="bg-white rounded-2xl border border-slate-200 p-6 md:p-7 shadow-sm"
+                key={step.step}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: index * 0.04 }}
+                className="rounded-2xl border border-slate-200/90 bg-slate-50/60 p-5 sm:p-6"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
-                  <useCase.icon className="w-6 h-6" />
+                <span className="text-[10px] font-semibold tabular-nums text-slate-400">{step.step}</span>
+                <div className="mt-3 flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-blue-600 shadow-sm">
+                    <step.icon className="h-4 w-4" aria-hidden />
+                  </div>
+                  <h3 className="font-display text-base font-semibold text-slate-900">{step.title}</h3>
                 </div>
-                <h3 className="text-xl font-black text-slate-900 tracking-tight font-display">{useCase.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Applications — domains, not product specs again */}
+      <section className="border-t border-slate-200/90 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <motion.div {...fadeUp} className="mb-8 text-center md:mb-10">
+            <h2 className="font-display text-3xl font-black text-slate-900 sm:text-4xl md:text-6xl">Where it applies</h2>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:text-base">Same platform thinking, different deployment contexts.</p>
+          </motion.div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            {useCases.map((item, idx) => (
+              <motion.div
+                key={item.title}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: idx * 0.03 }}
+                className="flex items-center gap-3 rounded-2xl border border-slate-200/90 bg-white px-4 py-4 sm:flex-col sm:items-start sm:gap-4 sm:px-5 sm:py-5"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white">
+                  <item.icon className="h-[1.15rem] w-[1.15rem]" aria-hidden />
+                </div>
+                <h3 className="font-display text-sm font-semibold text-slate-900 sm:text-base">{item.title}</h3>
               </motion.div>
             ))}
           </div>
@@ -262,30 +308,23 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 md:py-28 px-6 bg-slate-900 text-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-6xl font-black mb-6 tracking-tight leading-[1.05] font-display">
-            Build the Future of Wearable Sensing
-          </h2>
-          <p className="text-base md:text-xl text-slate-300 font-medium mb-10 max-w-3xl mx-auto">
-            Partner with ARETEUS to deploy next-generation sensing systems designed for performance, precision, and scale.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              to="/store"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-blue-500 transition-colors duration-300"
-            >
-              Shop Now
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/30 px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-slate-900 transition-all duration-300"
-            >
-              Contact Us
-              <Users className="w-4 h-4" />
-            </Link>
-          </div>
+      <section className="border-t border-slate-800 bg-slate-950 px-4 py-14 sm:px-6 sm:py-18 md:py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <motion.div {...fadeUp}>
+            <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-4xl md:text-6xl">
+              Transform the way you monitor the human body
+            </h2>
+            <p className="mt-3 text-sm text-slate-400 sm:text-base">Tell us about your use case—we’ll help you evaluate fit.</p>
+            <div className="mt-8 sm:mt-9">
+              <Link
+                to="/contact"
+                className="inline-flex min-h-[48px] w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-white px-8 py-3.5 text-[15px] font-medium text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+              >
+                Contact us
+                <ArrowRight className="h-4 w-4 opacity-80" aria-hidden />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </main>
