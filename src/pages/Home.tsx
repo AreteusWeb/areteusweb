@@ -1,146 +1,228 @@
-import Hero from '@/components/Hero';
 import { motion } from 'motion/react';
-import { Heart, Activity, Smartphone, Shield, Zap } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
+import {
+  Activity,
+  ArrowRight,
+  Heart,
+  RefreshCw,
+  Shield,
+  Smartphone,
+  Users,
+  Move3D,
+  Workflow,
+  RadioTower,
+  Stethoscope,
+  Dumbbell,
+  Microscope,
+  Gamepad2
+} from 'lucide-react';
 
-const features = [
+const productOverview = [
   {
-    icon: Heart,
-    title: "Clinical-Grade",
-    description: "Hospital-quality ECG monitoring in a wearable format."
+    name: 'ChestPad',
+    description: 'Focused wearable chest sensor for continuous, reliable cardiopulmonary monitoring.',
+    image: 'https://i.imgur.com/FyarXK2.png',
+    benefits: ['Chest-focused monitoring', 'Fast setup and simple workflow', 'Real-time vital insights']
   },
   {
-    icon: Activity,
-    title: "Real-Time AI",
-    description: "Instant detection of heart issues using advanced algorithms."
-  },
-  {
-    icon: Smartphone,
-    title: "Seamless App",
-    description: "Track your health discreetly at home, work, or on the go."
-  },
-  {
-    icon: Shield,
-    title: "Secure Data",
-    description: "Your health information is encrypted and private."
+    name: 'ARETEUS Full Body Tracker',
+    description: 'Distributed full-body motion tracking platform for VR, biomechanics, and advanced health analytics.',
+    image: 'https://i.imgur.com/LcMM8uj.jpeg',
+    benefits: ['Full-body motion visibility', 'Distributed wearable sensor nodes', 'Low-latency live data']
   }
+];
+
+const areteusFeatures = [
+  { text: 'Full-body tracking', icon: Move3D },
+  { text: 'Distributed sensors', icon: Workflow },
+  { text: 'Real-time data stream', icon: RadioTower },
+  { text: 'OTA firmware updates', icon: RefreshCw }
+];
+
+const chestpadFeatures = [
+  { text: 'Chest-centered sensing for cleaner signal quality', icon: Heart },
+  { text: 'Simple, wearable-first experience from setup to monitoring', icon: Shield },
+  { text: 'Real-time vital data for clinicians, athletes, and users', icon: Activity }
+];
+
+const useCases = [
+  { title: 'Healthcare', icon: Stethoscope },
+  { title: 'Sports Performance', icon: Dumbbell },
+  { title: 'Research & Biomechanics', icon: Microscope },
+  { title: 'VR / Motion Tracking', icon: Gamepad2 }
 ];
 
 export default function Home() {
   return (
     <main className="overflow-hidden">
-      <Hero />
-      
-      {/* Features Grid */}
-      <section className="py-40 px-6 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-grid opacity-50 -z-10" />
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] mb-6"
-            >
-              Our Expertise
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl md:text-6xl font-black text-slate-900 mb-6 md:mb-8 tracking-tight font-display leading-[1.1]"
-            >
-              Advanced Technology for <span className="text-gradient">Better Health</span>
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="text-lg md:text-xl text-slate-500 font-medium"
-            >
-              We combine medical expertise with cutting-edge engineering to create the next generation of health monitoring.
-            </motion.p>
-          </div>
+      {/* Hero */}
+      <section className="relative pt-36 md:pt-48 pb-24 md:pb-32 px-6 bg-grid">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full blur-[120px] opacity-60 -z-10" />
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
+              <Activity className="w-3.5 h-3.5 text-blue-600" />
+              ARETEUS Technology Platform
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tight text-slate-900 leading-[1.05] md:leading-[0.95] mb-6 md:mb-10 font-display">
+              Next-Generation <span className="text-gradient">Wearable Sensing</span> Technology
+            </h1>
+            <p className="max-w-3xl mx-auto text-base md:text-2xl text-slate-500 leading-relaxed mb-10 md:mb-14 font-medium">
+              ARETEUS builds premium sensing systems for focused chest monitoring and full-body motion intelligence across healthcare, sports, and research.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {features.map((feature, index) => (
+      {/* Products Overview */}
+      <section className="py-24 md:py-32 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+            <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-5 tracking-tight font-display">
+              Two Products. <span className="text-gradient">One Platform Vision.</span>
+            </h2>
+            <p className="text-base md:text-xl text-slate-500 font-medium">
+              Choose the product that fits your sensing needs, from focused chest monitoring to distributed full-body tracking.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+            {productOverview.map((product, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative bg-white p-8 md:p-10 rounded-[32px] md:rounded-[48px] border border-slate-100 shadow-premium hover:shadow-premium-hover transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                transition={{ delay: index * 0.1, duration: 0.8 }}
+                className="group bg-white border border-slate-200 rounded-[28px] md:rounded-[40px] p-6 md:p-9 shadow-[0_16px_60px_-30px_rgba(15,23,42,0.25)] hover:-translate-y-1 hover:shadow-[0_24px_80px_-35px_rgba(15,23,42,0.35)] transition-all duration-500"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/0 via-transparent to-blue-600/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
-                <div className="relative z-10">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-slate-50 rounded-xl md:rounded-2xl flex items-center justify-center text-slate-400 mb-6 md:mb-10 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-sm">
-                    <feature.icon className="w-6 h-6 md:w-8 md:h-8" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-3 md:mb-4 tracking-tight font-display">{feature.title}</h3>
-                  <p className="text-base md:text-lg text-slate-500 leading-relaxed font-medium">{feature.description}</p>
+                <div className="rounded-2xl md:rounded-[28px] overflow-hidden border border-slate-100 mb-6">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
+                <h3 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight font-display mb-4">{product.name}</h3>
+                <p className="text-slate-500 font-medium leading-relaxed mb-6">{product.description}</p>
+                <ul className="space-y-3 mb-8">
+                  {product.benefits.map((benefit) => (
+                    <li key={benefit} className="flex items-center gap-3 text-slate-700">
+                      <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center">
+                        <Activity className="w-3.5 h-3.5 text-blue-600" />
+                      </div>
+                      <span className="text-sm md:text-base font-semibold">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/store"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-blue-500 transition-colors duration-300"
+                >
+                  View Product
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Lifestyle Section */}
-      <section className="py-40 px-6 bg-slate-900 text-white relative overflow-hidden">
+      {/* ARETEUS Dedicated Feature Section */}
+      <section className="py-24 md:py-32 px-6 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-dark opacity-20" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] -z-10" />
-        
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
-          <motion.div 
-            initial={{ opacity: 0, x: -40 }}
+        <div className="absolute top-0 right-0 w-[720px] h-[720px] bg-blue-500/20 rounded-full blur-[120px] -z-10" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 order-2 lg:order-1 relative"
+            transition={{ duration: 0.9 }}
           >
-            <div className="relative z-10 rounded-[32px] md:rounded-[64px] overflow-hidden border-[6px] md:border-[12px] border-white/5 shadow-2xl">
-              <img 
-                src="https://i.imgur.com/df0VCgf.png" 
-                alt="Health Integration" 
-                className="w-full object-cover aspect-[4/5] scale-105"
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+              ARETEUS System
+            </div>
+            <h2 className="text-3xl md:text-6xl font-black mb-6 tracking-tight leading-[1.05] font-display">
+              Full Body Tracking <span className="text-blue-400">Without Compromise</span>
+            </h2>
+            <p className="text-base md:text-xl text-slate-300 mb-8 md:mb-10 font-medium leading-relaxed">
+              Built for advanced motion intelligence, ARETEUS combines distributed wearable nodes and centralized control for accurate, scalable full-body data capture.
+            </p>
+            <ul className="space-y-4">
+              {areteusFeatures.map((feature, idx) => (
+                <li key={idx} className="flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400">
+                    <feature.icon className="w-5 h-5" />
+                  </div>
+                  <span className="font-bold text-slate-100">{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+          >
+            <div className="rounded-[28px] md:rounded-[40px] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm">
+              <img
+                src="https://i.imgur.com/LcMM8uj.jpeg"
+                alt="ARETEUS Full Body Tracker visual"
+                className="w-full aspect-[4/3] object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
           </motion.div>
+        </div>
+      </section>
 
-          <motion.div 
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+      {/* ChestPad Dedicated Feature Section */}
+      <section className="py-24 md:py-32 px-6 bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 order-1 lg:order-2"
+            transition={{ duration: 0.8 }}
+            className="order-2 lg:order-1"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10">
-              Lifestyle Integration
+            <div className="rounded-[28px] md:rounded-[40px] overflow-hidden border border-slate-100 shadow-premium">
+              <img
+                src="https://i.imgur.com/FyarXK2.png"
+                alt="ChestPad wearable sensor"
+                className="w-full aspect-[4/3] object-cover"
+                referrerPolicy="no-referrer"
+              />
             </div>
-            <h2 className="text-3xl md:text-7xl font-black mb-6 md:mb-10 tracking-tight leading-[0.95] font-display">
-              Seamlessly Integrated into Your <span className="text-blue-500">Lifestyle</span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="order-1 lg:order-2"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+              ChestPad
+            </div>
+            <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.05] font-display">
+              Focused Chest Monitoring for <span className="text-gradient">Everyday Precision</span>
             </h2>
-            <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-8 md:mb-12 font-medium">
-              Track your heart health discreetly and effortlessly at home, at work, or on the go. We are dedicated to making healthcare smarter and more accessible.
+            <p className="text-base md:text-xl text-slate-500 font-medium leading-relaxed mb-8">
+              ChestPad delivers a streamlined wearable experience for high-fidelity chest monitoring, built for ease of use and reliable real-time insight.
             </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
-              {[
-                { text: 'Discreet Design', icon: Shield },
-                { text: 'Long Battery Life', icon: Zap },
-                { text: 'Instant Alerts', icon: Activity },
-                { text: 'Doctor Reports', icon: Smartphone }
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 md:gap-5 group">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-sm">
-                    <item.icon className="w-5 h-5 md:w-6 md:h-6" />
+            <ul className="space-y-4">
+              {chestpadFeatures.map((feature, idx) => (
+                <li key={idx} className="flex items-center gap-4 text-slate-700">
+                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+                    <feature.icon className="w-5 h-5" />
                   </div>
-                  <span className="text-base md:text-lg font-bold text-slate-200">{item.text}</span>
+                  <span className="font-bold">{feature.text}</span>
                 </li>
               ))}
             </ul>
@@ -148,43 +230,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI Section */}
-      <section className="py-40 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] mb-10">
-              Intelligence
-            </div>
-            <h2 className="text-3xl md:text-7xl font-black text-slate-900 mb-6 md:mb-10 tracking-tight leading-[0.95] font-display">
-              Advanced <span className="text-gradient">AI-Powered</span> Diagnostics
+      {/* Use Cases */}
+      <section className="py-24 md:py-28 px-6 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16">
+            <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-5 tracking-tight font-display">
+              Applications Across High-Impact Domains
             </h2>
-            <p className="text-lg md:text-xl text-slate-500 leading-relaxed mb-8 md:mb-12 font-medium">
-              Our proprietary algorithms analyze ECG data in real-time, identifying potential anomalies before they become critical. Experience hospital-grade monitoring from the comfort of your home.
+            <p className="text-base md:text-xl text-slate-500 font-medium">
+              Both products are built to support practical outcomes in medicine, performance, immersive technology, and science.
             </p>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 relative"
-          >
-            <div className="relative z-10 rounded-[32px] md:rounded-[64px] overflow-hidden shadow-premium border-[6px] md:border-[12px] border-white bg-white">
-              <img 
-                src="https://picsum.photos/seed/medical-ai/1200/1500" 
-                alt="AI Diagnostics" 
-                className="w-full object-cover aspect-[4/5]"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100 rounded-full blur-[100px] -z-10" />
-          </motion.div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            {useCases.map((useCase, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.05 }}
+                className="bg-white rounded-2xl border border-slate-200 p-6 md:p-7 shadow-sm"
+              >
+                <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                  <useCase.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-black text-slate-900 tracking-tight font-display">{useCase.title}</h3>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 md:py-28 px-6 bg-slate-900 text-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-6xl font-black mb-6 tracking-tight leading-[1.05] font-display">
+            Build the Future of Wearable Sensing
+          </h2>
+          <p className="text-base md:text-xl text-slate-300 font-medium mb-10 max-w-3xl mx-auto">
+            Partner with ARETEUS to deploy next-generation sensing systems designed for performance, precision, and scale.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link
+              to="/store"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-blue-500 transition-colors duration-300"
+            >
+              Shop Now
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/30 px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-slate-900 transition-all duration-300"
+            >
+              Contact Us
+              <Users className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </main>

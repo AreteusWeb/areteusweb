@@ -9,6 +9,7 @@ interface CheckoutFormProps {
     id: string;
     name: string;
     price: number;
+    stripePriceId?: string;
   };
   onSuccess: () => void;
 }
@@ -35,7 +36,12 @@ export default function CheckoutForm({ product, onSuccess }: CheckoutFormProps) 
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/create-payment-intent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: product.price, customerEmail: formData.email }),
+        body: JSON.stringify({
+          amount: product.price,
+          customerEmail: formData.email,
+          productId: product.id,
+          priceId: product.stripePriceId || undefined,
+        }),
       });
 
       const { clientSecret, error: backendError } = await response.json();

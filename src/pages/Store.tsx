@@ -12,10 +12,20 @@ const products = [
   {
     id: 'areteus-chestpad',
     name: 'ARETEUS Chestpad',
+    stripePriceId: import.meta.env.VITE_STRIPE_PRICE_ID_CHESTPAD || '',
     price: 123,
     description: 'Clinical-grade 12-lead ECG wearable for professional athletes and cardiac patients.',
     image: 'https://i.imgur.com/FyarXK2.png',
     features: ['12-lead ECG', 'AI Diagnostics', '24/7 Monitoring']
+  },
+  {
+    id: 'areteus-full-body-tracker-system',
+    name: 'ARETEUS Full Body Tracker System',
+    stripePriceId: import.meta.env.VITE_STRIPE_PRICE_ID_FULL_BODY_TRACKER || '',
+    price: 999.99,
+    description: 'A distributed full-body motion tracking system with wearable sensor nodes and an ESP32-based central controller.',
+    image: 'https://i.imgur.com/LcMM8uj.jpeg',
+    features: ['Full-body tracking', 'Low-latency communication', 'Scalable wearable nodes', 'OTA firmware updates']
   }
 ];
 

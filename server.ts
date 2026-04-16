@@ -163,13 +163,37 @@ async function startServer() {
   });
 
   app.post("/api/create-payment-intent", async (req, res) => {
-    const { amount, customerEmail } = req.body;
+    const { amount, customerEmail, productId, priceId } = req.body;
     try {
+      let amountInCents = Math.round(amount * 100);
+      let resolvedPriceId: string | undefined;
+
+      if (typeof priceId === 'string' && priceId.trim()) {
+        resolvedPriceId = priceId.trim();
+      } else if (typeof productId === 'string') {
+        const productPriceMap: Record<string, string | undefined> = {
+          'areteus-chestpad': process.env.STRIPE_PRICE_ID_CHESTPAD,
+          'areteus-full-body-tracker-system': process.env.STRIPE_PRICE_ID_FULL_BODY_TRACKER,
+        };
+        resolvedPriceId = productPriceMap[productId];
+      }
+
+      if (resolvedPriceId) {
+        const stripePrice = await stripe.prices.retrieve(resolvedPriceId);
+        if (stripePrice.unit_amount) {
+          amountInCents = stripePrice.unit_amount;
+        }
+      }
+
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100),
+        amount: amountInCents,
         currency: 'usd',
         receipt_email: customerEmail,
         automatic_payment_methods: { enabled: true },
+        metadata: {
+          productId: productId || 'unknown-product',
+          priceId: resolvedPriceId || 'manual-amount',
+        },
       });
       res.send({ clientSecret: paymentIntent.client_secret });
     } catch (error: any) {
