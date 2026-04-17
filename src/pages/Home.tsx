@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   BarChart3,
+  Circle,
   Database,
   Dumbbell,
   Gamepad2,
@@ -17,10 +18,10 @@ import {
 } from 'lucide-react';
 
 const fadeUp = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 10 }, // less movement
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-48px' },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  viewport: { once: true }, // remove glitch
+  transition: { duration: 0.4, ease: 'easeOut' },
 } as const;
 
 const chestpadSensors = ['ECG', 'SpO2', 'Temperature', 'Blood pressure'];
@@ -95,7 +96,7 @@ export default function Home() {
               <span className="text-gradient">Wearable Health Technology</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-slate-600 sm:mt-5 sm:text-lg md:text-xl md:leading-relaxed">
-              Pioneering intelligent monitoring systems—advanced design and development for wearables that serve both medical rigor and real-world performance.
+              Pioneering intelligent monitoring systems—advanced design and development for wearables that serve both medical rigor and real world performance.
             </p>
             <div className="mx-auto mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
               <Link
@@ -117,12 +118,12 @@ export default function Home() {
       </section>
 
       {/* About — single column, no badge */}
-      <section className="border-y border-slate-200/90 bg-white px-4 py-10 sm:px-6 sm:py-14 md:py-16">
+      <section className="border-y border-slate-200/90 bg-slate-50 px-4 py-10 sm:px-6 sm:py-14 md:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <motion.div {...fadeUp}>
             <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">Built for innovation</h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              ARETEUS focuses on wearable hardware and signal quality—minimal friction, maximum clarity—so teams can trust what they measure.
+              ARETEUS focuses on wearable hardware and signal quality minimal friction, maximum clarity, so teams can trust what they measure.
             </p>
           </motion.div>
         </div>
@@ -134,29 +135,30 @@ export default function Home() {
           <motion.div {...fadeUp} className="mb-8 text-center sm:mb-10 md:mb-12">
             <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">Products</h2>
             <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:mt-3 sm:text-base">
-              Two lines—chest-centered vitals and full-body motion—each engineered for different environments.
+              Two lines, chest-centered vitals and full-body motion, each engineered for different environments.
             </p>
           </motion.div>
 
           {/* Chestpad */}
           <motion.article
             {...fadeUp}
-            className="mb-6 overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_12px_40px_-24px_rgba(15,23,42,0.2)] sm:mb-8 sm:rounded-3xl md:mb-10"
+            className="mb-8 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-[0_20px_50px_-22px_rgba(2,6,23,0.65)] sm:mb-10 sm:rounded-3xl"
           >
-            <div className="grid gap-0 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] lg:items-stretch">
-              <div className="border-b border-slate-100 p-5 sm:p-7 md:p-9 lg:border-b-0 lg:border-r">
-                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 sm:text-xs">Medical · fitness</p>
-                <h3 className="mt-2 font-display text-2xl font-black text-slate-900 sm:text-3xl md:text-4xl">ARETEUS Chestpad</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:mt-3 sm:text-[15px]">
-                  Continuous cardiopulmonary insight from a chest-focused wearable—appropriate for clinical pathways and demanding training.
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_10%_20%,rgba(34,211,238,0.12),transparent_55%)]" />
+            <div className="relative grid gap-0 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] lg:items-stretch">
+              <div className="border-b border-white/10 p-5 sm:p-7 md:p-9 lg:border-b-0 lg:border-r lg:border-white/10">
+                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan-200/80 sm:text-xs">Medical · fitness</p>
+                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">ARETEUS Chestpad</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:mt-3 sm:text-[15px]">
+                  Continuous cardiopulmonary insight from a chest-focused wearable appropriate for clinical pathways and demanding training.
                 </p>
-                <ul className="mt-5 grid gap-2 sm:mt-6" role="list">
+                <ul className="mt-5 space-y-2 sm:mt-6" role="list">
                   {chestpadSensors.map((label) => (
                     <li
                       key={label}
-                      className="flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2.5 text-sm font-medium text-slate-800 sm:px-4"
+                      className="flex items-start gap-2.5 text-sm text-slate-100 sm:text-[15px]"
                     >
-                      <span className="text-slate-400">·</span>
+                      <Circle className="mt-1 h-2 w-2 shrink-0 fill-cyan-400 text-cyan-400" aria-hidden />
                       {label}
                     </li>
                   ))}
@@ -164,18 +166,18 @@ export default function Home() {
                 <div className="mt-6 sm:mt-8">
                   <Link
                     to="/store"
-                    className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-[15px] font-medium text-white transition hover:bg-slate-800 sm:w-auto sm:px-6"
+                    className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-[15px] font-medium text-slate-950 transition hover:bg-cyan-300 sm:w-auto sm:px-6"
                   >
                     Explore product
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
                 </div>
               </div>
-              <div className="relative aspect-[16/11] min-h-[180px] bg-slate-100 sm:aspect-auto sm:min-h-[220px] lg:min-h-full">
+              <div className="relative aspect-[16/11] min-h-[180px] bg-slate-900 sm:aspect-auto sm:min-h-[220px] lg:min-h-full">
                 <img
                   src="https://i.imgur.com/FyarXK2.png"
                   alt="ARETEUS Chestpad"
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-cover object-center opacity-[0.97]"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -202,12 +204,12 @@ export default function Home() {
                 <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan-200/80 sm:text-xs">Motion · spatial</p>
                 <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">ARETEUS Full Body Tracker</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:mt-3 sm:text-[15px]">
-                  Distributed capture for full-body motion—built for immersive environments, biomechanics labs, and advanced analytics.
+                  Distributed capture for full-body motion built for immersive environments, biomechanics labs, and advanced analytics.
                 </p>
                 <ul className="mt-5 space-y-2 sm:mt-6" role="list">
                   {fullBodyHighlights.map((label) => (
                     <li key={label} className="flex items-start gap-2.5 text-sm text-slate-100 sm:text-[15px]">
-                      <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400/90" aria-hidden />
+                      <Circle className="mt-1 h-2 w-2 shrink-0 fill-cyan-400 text-cyan-400" aria-hidden />
                       <span>{label}</span>
                     </li>
                   ))}
@@ -314,7 +316,7 @@ export default function Home() {
             <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-4xl md:text-6xl">
               Transform the way you monitor the human body
             </h2>
-            <p className="mt-3 text-sm text-slate-400 sm:text-base">Tell us about your use case—we’ll help you evaluate fit.</p>
+            <p className="mt-3 text-sm text-slate-400 sm:text-base">Tell us about your use case, we’ll help you evaluate fit.</p>
             <div className="mt-8 sm:mt-9">
               <Link
                 to="/contact"

@@ -57,13 +57,10 @@ export default function ContactForm() {
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
         <div className="lg:col-span-5">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] mb-10">
-            Contact Us
-          </div>
           <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-10 tracking-tight leading-[0.95] font-display">
             Let's Start a <br /> <span className="text-gradient">Conversation</span>
           </h2>
-          <p className="text-xl text-slate-500 leading-relaxed mb-16 max-w-md font-medium">
+          <p className="text-xl text-slate-500 leading-relaxed mb-16 max-w-md">
             Have questions about our technology or want to learn more about our partnership? We'd love to hear from you.
           </p>
 
@@ -74,7 +71,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <h4 className="text-xl font-black text-slate-900 mb-2 font-display tracking-tight">Email Us</h4>
-                <p className="text-lg text-slate-500 font-medium">Our team typically responds within 24 hours.</p>
+                <p className="text-lg text-slate-500">Our team typically responds within 24 hours.</p>
               </div>
             </div>
             <div className="flex items-start gap-8 group">
@@ -83,7 +80,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <h4 className="text-xl font-black text-slate-900 mb-2 font-display tracking-tight">Support</h4>
-                <p className="text-lg text-slate-500 font-medium">Available for technical inquiries and assistance.</p>
+                <p className="text-lg text-slate-500">Available for technical inquiries and assistance.</p>
               </div>
             </div>
           </div>

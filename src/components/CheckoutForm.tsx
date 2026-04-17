@@ -136,7 +136,7 @@ export default function CheckoutForm({ product, onSuccess }: CheckoutFormProps) 
           <CheckCircle2 className="w-10 h-10 text-blue-600" />
         </div>
         <h3 className="text-3xl font-black text-slate-900 mb-4 font-display">Order Confirmed!</h3>
-        <p className="text-slate-500 font-medium">Thank you for your purchase. You will receive a confirmation email shortly.</p>
+        <p className="text-slate-500">Thank you for your purchase. You will receive a confirmation email shortly.</p>
       </div>
     );
   }

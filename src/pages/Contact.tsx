@@ -12,10 +12,10 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-6xl md:text-8xl font-black text-slate-900 mb-6 tracking-tight leading-[0.9] font-display">
+          <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tight leading-[0.9] font-display">
             Get in <span className="text-gradient">Touch</span>
           </h1>
-          <p className="text-xl text-slate-500 font-medium max-w-2xl mx-auto">
+          <p className="text-xl text-slate-500 max-w-2xl mx-auto">
             We're here to help. Reach out to us for any inquiries about our technology or partnerships.
           </p>
         </motion.div>

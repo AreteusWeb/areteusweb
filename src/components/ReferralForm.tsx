@@ -77,13 +77,13 @@ export default function ReferralForm() {
       
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
         <div className="flex-1">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10">
-            Referral Program
-          </div>
+          <p className="text-sm text-slate-400 mb-6">
+             Referral Program
+          </p>
           <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tight leading-[0.95] font-display">
             Refer a Friend, <br /> <span className="text-blue-500">Earn Rewards</span>
           </h2>
-          <p className="text-xl text-slate-400 leading-relaxed mb-12 font-medium">
+          <p className="text-xl text-slate-400 leading-relaxed mb-12">
             Share the gift of heart health. When your friends make their first purchase, you'll receive a credit towards your next device or subscription.
           </p>
           

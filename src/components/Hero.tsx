@@ -41,7 +41,7 @@ export default function Hero() {
             Technology
           </h1>
           
-          <p className="text-base md:text-2xl text-slate-500 leading-relaxed mb-8 md:mb-12 max-w-2xl mx-auto lg:mx-0 font-medium">
+          <p className="text-base md:text-2xl text-slate-500 leading-relaxed mb-8 md:mb-12 max-w-2xl mx-auto lg:mx-0">
             At ARETEUS we are pioneering the future of wearable health technology. We specialize in advanced design and development of innovative ECG monitoring systems.
           </p>
         </motion.div>

@@ -105,19 +105,13 @@ export default function Navbar() {
                 <Link
                   to={link.path}
                   className={cn(
-                    'text-lg font-black py-3.5 px-4 rounded-2xl transition-all duration-300 flex items-center justify-between group',
+                    'text-lg font-semibold py-3.5 px-4 rounded-2xl transition-all duration-300 flex items-center',
                     location.pathname === link.path 
                       ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/25' 
                       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                   )}
                 >
                   {link.name}
-                  <div className={cn(
-                    'w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500',
-                    location.pathname === link.path ? 'bg-white/20' : 'bg-slate-200 group-hover:bg-slate-900 group-hover:text-white'
-                  )}>
-                    <HeartPulse size={16} className={cn(location.pathname === link.path ? 'text-white' : '')} />
-                  </div>
                 </Link>
               </motion.div>
             ))}

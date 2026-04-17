@@ -64,13 +64,13 @@ export default function SubscriptionForm() {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10">
+          <p className="text-sm text-slate-400 mb-6">
             Newsletter
-          </div>
-          <h2 className="text-6xl md:text-8xl font-black mb-10 tracking-tight leading-[0.9] font-display">
+          </p>
+          <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tight leading-[0.9] font-display">
             Stay Updated on the <br /> <span className="text-blue-500">Future of Health</span>
           </h2>
-          <p className="text-slate-400 text-xl md:text-2xl mb-16 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p className="text-slate-400 text-lg md:text-xl mb-16 max-w-3xl mx-auto leading-relaxed">
             Join our newsletter to receive the latest breakthroughs in wearable ECG technology and health innovation.
           </p>
 
@@ -82,12 +82,12 @@ export default function SubscriptionForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={status === 'loading' || status === 'success'}
-              className="flex-1 bg-transparent px-8 py-6 text-white placeholder:text-slate-500 focus:outline-none transition-all text-xl font-medium"
+              className="flex-1 bg-transparent px-6 py-4 text-white placeholder:text-slate-500 focus:outline-none transition-all text-base"
             />
             <button
               type="submit"
               disabled={status === 'loading' || status === 'success'}
-              className="bg-blue-600 text-white px-12 py-6 rounded-[32px] font-black text-sm uppercase tracking-widest hover:bg-blue-500 active:scale-95 transition-all duration-500 flex items-center justify-center gap-4 disabled:opacity-50 shadow-xl shadow-blue-900/40"
+              className="bg-blue-600 text-white px-8 py-4 rounded-[24px] font-semibold text-sm uppercase tracking-widest hover:bg-blue-500 active:scale-95 transition-all duration-500 flex items-center justify-center gap-3 disabled:opacity-50 shadow-xl shadow-blue-900/40"
             >
               {status === 'loading' ? (
                 <Loader2 className="w-6 h-6 animate-spin" />
