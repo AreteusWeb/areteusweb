@@ -123,7 +123,7 @@ export default function Home() {
           <motion.div {...fadeUp}>
             <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">Built for innovation</h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              ARETEUS focuses on wearable hardware and signal quality minimal friction, maximum clarity, so teams can trust what they measure.
+              ARETEUS focuses on wearable hardware and signal quality—minimal friction, maximum clarity, so teams can trust what they measure.
             </p>
           </motion.div>
         </div>

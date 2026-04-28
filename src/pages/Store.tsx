@@ -14,9 +14,9 @@ const products = [
     name: 'ARETEUS Chestpad',
     stripePriceId: import.meta.env.VITE_STRIPE_PRICE_ID_CHESTPAD || '',
     price: 123,
-    description: 'Clinical-grade 12-lead ECG wearable for professional athletes and cardiac patients.',
+    description: 'Professional 12-lead ECG wearable for athletes and fitness enthusiasts interested in continuous monitoring.',
     image: 'https://i.imgur.com/FyarXK2.png',
-    features: ['12-lead ECG', 'AI diagnostics', '24/7 monitoring']
+    features: ['12-lead ECG', 'AI insights', '24/7 monitoring']
   },
   {
     id: 'areteus-full-body-tracker-system',
@@ -44,7 +44,7 @@ export default function Store() {
         </h1>
 
         <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-          Invest in your heart health with our clinical-grade wearable technology.
+          Advanced wearable monitoring technology for continuous health tracking.
         </p>
       </section>
 

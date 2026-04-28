@@ -47,18 +47,23 @@ export default function Footer() {
             <div className="col-span-2 md:col-span-1">
               <h4 className="text-[9px] font-black text-slate-900 uppercase tracking-[0.2em] mb-4">Legal</h4>
               <ul className="space-y-2">
-                <li><Link to="/legal/privacy" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Privacy Policy</Link></li>
-                <li><Link to="/legal/terms" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Terms of Service</Link></li>
-                <li><Link to="/legal/cookies" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Cookie Policy</Link></li>
+                <li><Link to="/privacy" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Terms of Service</Link></li>
+                <li><Link to="/cookies" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Cookie Policy</Link></li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="pt-6 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[10px] text-slate-400 font-medium tracking-tight">
-            © {new Date().getFullYear()} ARETEUS. Designed for the future of health.
-          </p>
+          <div className="flex flex-col gap-3 w-full">
+            <p className="text-[10px] text-slate-500 font-medium tracking-tight leading-relaxed">
+              <span className="font-bold">Disclaimer:</span> This product is designed for entertainment and educational purposes only. It is not intended for medical diagnosis, treatment, or any healthcare decision-making. Please do not rely on this device for medical advice or diagnosis. Always consult with qualified healthcare professionals for any health-related concerns.
+            </p>
+            <p className="text-[10px] text-slate-400 font-medium tracking-tight">
+              © {new Date().getFullYear()} ARETEUS. Designed for the future of health.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

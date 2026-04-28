@@ -8,7 +8,7 @@ const jobDetails = [
 ];
 
 const projects = [
-  { icon: Microscope, name: "Raman/SERS blood diagnostics" },
+  { icon: Microscope, name: "Raman/SERS blood analysis" },
   { icon: Waves, name: "Photoacoustic imaging" },
   { icon: Cpu, name: "Thermoacoustic imaging" }
 ];
@@ -56,15 +56,15 @@ export default function Careers() {
               </div>
 
               <h2 className="text-3xl md:text-6xl font-black mb-8 md:mb-12 tracking-tight leading-[1.2] md:leading-[0.95] font-display">
-                Transforming Healthcare, <br className="hidden md:block" /> <span className="text-blue-500">Saving Lives</span>
+                Advanced Wearable <br className="hidden md:block" /> <span className="text-blue-500">Technology</span>
               </h2>
 
               <p className="text-base md:text-2xl text-slate-400 leading-relaxed mb-6 md:mb-10">
-                We are developing next-generation heart monitoring technology that surpasses hospital-grade systems. Our wearable ECG integrates with AI capable of detecting heart issues in real-time.
+                We are developing next-generation wearable monitoring technology. Our multi-lead ECG integrates with AI for real-time data analysis and tracking.
               </p>
 
               <p className="text-sm md:text-lg text-slate-500 leading-relaxed">
-              We specialize in advanced multi-lead ECG systems embedded in wearable garments, making clinical monitoring invisible and effortless.
+              We specialize in advanced multi-lead ECG systems embedded in wearable garments, making continuous monitoring comfortable and effortless.
               </p>
             </div>
           </motion.div>
