@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'; 
+import { motion } from 'motion/react';
 import { Briefcase, MapPin, Clock } from 'lucide-react';
 
 const jobDetails = [
@@ -20,11 +20,11 @@ const qualifications = [
 export default function Careers() {
   return (
     <main className="pt-24 md:pt-40 pb-16 md:pb-24 overflow-hidden">
-      
+
       {/* HERO */}
       <section className="px-6 mb-16 md:mb-28 relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-grid opacity-50 -z-10" />
-        
+
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export default function Careers() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight font-display">
-              Build the Future of <br className="hidden md:block" /> 
+              Build the Future of <br className="hidden md:block" />
               <span className="text-gradient">Wearable Technology</span>
             </h1>
 
@@ -66,14 +66,14 @@ export default function Careers() {
       {/* JOB */}
       <section className="px-6">
         <div className="max-w-5xl mx-auto">
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <div className="bg-white p-6 md:p-10 rounded-[28px] md:rounded-[48px] border border-slate-100 shadow-premium hover:shadow-premium-hover transition-all duration-500">
-              
+
               {/* TOP */}
               <div className="mb-6">
                 <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -152,9 +152,9 @@ export default function Careers() {
 
               {/* CTA */}
               <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                
+
                 <p className="text-sm text-slate-500">
-                  Apply with your projects at:
+                  Apply with your projects (GitHub, videos, photos) at:
                   <span className="ml-2 text-blue-600 font-semibold">
                     info@areteus.us
                   </span>

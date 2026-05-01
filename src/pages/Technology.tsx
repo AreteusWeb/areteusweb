@@ -42,7 +42,7 @@ export default function Technology() {
         <div className="mx-auto w-full max-w-4xl text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
             <h1 className="font-display text-4xl font-black leading-[1.1] tracking-tight text-slate-900 sm:text-6xl md:text-8xl">
-              Technology
+              ARETEUS <span className="text-gradient">Technology</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-[1.125rem] leading-relaxed text-slate-600 md:text-2xl">
               From single-node sensing to full-body wearable networks.
@@ -51,14 +51,14 @@ export default function Technology() {
         </div>
       </section>
 
-      {/* 2. CHESTPAD */}
+      {/* 2. CHESTPATCH */}
       <section className="scroll-mt-24 px-4 py-20 bg-white sm:px-6 md:py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div {...fadeUp}>
-              <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">ChestPad</h2>
+              <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">ChestPatch</h2>
               <p className="mt-6 text-lg leading-relaxed text-slate-600">
-                ChestPad is a lightweight wearable sensing device designed for continuous physiological monitoring. It captures key body signals and serves as a compact entry point into the Areteus technology platform.
+                ChestPatch is a lightweight wearable sensing device designed for continuous physiological tracking. It captures key body signals and serves as a compact entry point into the Areteus technology platform.
               </p>
 
               <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -103,7 +103,7 @@ export default function Technology() {
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium p-12 text-center group">
                 <img 
                   src="https://i.imgur.com/FyarXK2.png" 
-                  alt="ChestPad Sensor Placement"
+                  alt="ChestPatch Sensor Placement"
                   className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />

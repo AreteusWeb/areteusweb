@@ -6,7 +6,7 @@ const partnerBenefits = [
   {
     icon: Globe,
     title: "Global Reach",
-    description: "Scale your medical solutions across international markets with our integrated platform."
+    description: "Scale your wellness and research solutions across international markets with our integrated platform."
   },
   {
     icon: Building2,
@@ -16,7 +16,7 @@ const partnerBenefits = [
   {
     icon: Users,
     title: "Expert Network",
-    description: "Collaborate with professionals across healthcare, research, and technology."
+    description: "Collaborate with professionals across wellness, research, and technology."
   }
 ];
 
@@ -40,7 +40,7 @@ export default function Partners() {
             </h1>
 
             <p className="text-lg md:text-xl text-slate-500 leading-relaxed">
-              We believe in the power of partnership to accelerate smarter and more accessible healthcare solutions.
+              We believe in the power of partnership to accelerate smarter and more accessible wellness and sensing solutions.
             </p>
           </motion.div>
 
@@ -84,14 +84,14 @@ export default function Partners() {
               </h2>
 
               <p className="text-base md:text-lg text-slate-500 leading-relaxed mb-8">
-                We collaborate with partners to integrate both our wearable health monitoring systems and full-body tracking technology into real-world environments, enabling new possibilities across healthcare, performance, and research.
+                We collaborate with partners to integrate both our wearable body sensing systems and full-body tracking technology into real-world environments, enabling new possibilities across wellness, performance, and research.
               </p>
 
               {/* TAGS FIXED */}
               <div className="flex flex-wrap justify-start gap-2 max-w-sm">
                 {[
                   'Research Institutions',
-                  'Healthcare Providers',
+                  'Researchers & Developers',
                   'Tech Distributors'
                 ].map((tag, i) => (
                   <div
@@ -143,7 +143,7 @@ export default function Partners() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-400 mb-8">
-            Whether you are a healthcare provider, research institution, or technology distributor, we want to hear from you.
+            Whether you are a research institution, developer, or technology distributor, we want to hear from you.
           </p>
 
           {/* BOTÓN */}

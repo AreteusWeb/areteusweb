@@ -42,7 +42,7 @@ export default function Hero() {
           </h1>
           
           <p className="text-base md:text-2xl text-slate-500 leading-relaxed mb-8 md:mb-12 max-w-2xl mx-auto lg:mx-0">
-            At ARETEUS we are pioneering the future of wearable health technology. We specialize in advanced design and development of innovative ECG monitoring systems.
+            At ARETEUS we are pioneering the future of wearable health technology. We specialize in advanced design and development of innovative ECG sensing systems.
           </p>
         </motion.div>
 
@@ -55,7 +55,7 @@ export default function Hero() {
           <div className="relative z-10 rounded-[24px] md:rounded-[64px] overflow-hidden shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] md:shadow-[0_80px_160px_-30px_rgba(0,0,0,0.15)] border-[4px] md:border-[12px] border-white bg-white group transition-all duration-700 hover:shadow-[0_100px_200px_-40px_rgba(0,0,0,0.2)]">
             <img 
               src="https://i.imgur.com/nFpWtBe.png" 
-              alt="ARETEUS Medical Research" 
+              alt="ARETEUS Health Research" 
               className="w-full h-auto rounded-[20px] md:rounded-[52px] object-cover transition-transform duration-1000 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />

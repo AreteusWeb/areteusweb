@@ -11,7 +11,7 @@ import {
   Microscope,
   Radio,
   Sparkles,
-  Stethoscope,
+  HeartPulse,
   TabletSmartphone,
   Target,
   Watch,
@@ -24,14 +24,14 @@ const fadeUp = {
   transition: { duration: 0.4, ease: 'easeOut' },
 } as const;
 
-const chestpadSensors = ['ECG', 'SpO2', 'Temperature', 'Blood pressure'];
+const chestPatchSensors = ['ECG', 'SpO2', 'Temperature', 'Blood pressure'];
 
-const fullBodyHighlights = ['Full body motion tracking', 'VR compatibility', 'Medical applications'];
+const fullBodyHighlights = ['Full body motion tracking', 'VR compatibility', 'Research applications'];
 
 const platformFeatures = [
   {
     title: 'Real-time monitoring',
-    description: 'Live streams tuned for clinical review and performance labs.',
+    description: 'Live streams tuned for research review and performance labs.',
     icon: Radio,
   },
   {
@@ -73,7 +73,7 @@ const howSteps = [
 ];
 
 const useCases = [
-  { title: 'Healthcare', icon: Stethoscope },
+  { title: 'Wellness', icon: HeartPulse },
   { title: 'Sports performance', icon: Dumbbell },
   { title: 'Research & biomechanics', icon: Microscope },
   { title: 'VR / motion', icon: Gamepad2 },
@@ -96,7 +96,7 @@ export default function Home() {
               <span className="text-gradient">Wearable Health Technology</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-slate-600 sm:mt-5 sm:text-lg md:text-xl md:leading-relaxed">
-              Pioneering intelligent monitoring systems—advanced design and development for wearables that serve both medical rigor and real world performance.
+              Pioneering intelligent sensing systems—advanced design and development for wearables that serve both research rigor and real world performance.
             </p>
             <div className="mx-auto mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
               <Link
@@ -139,7 +139,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Chestpad */}
+          {/* ChestPatch */}
           <motion.article
             {...fadeUp}
             className="mb-8 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-[0_20px_50px_-22px_rgba(2,6,23,0.65)] sm:mb-10 sm:rounded-3xl"
@@ -147,13 +147,13 @@ export default function Home() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_10%_20%,rgba(34,211,238,0.12),transparent_55%)]" />
             <div className="relative grid gap-0 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] lg:items-stretch">
               <div className="border-b border-white/10 p-5 sm:p-7 md:p-9 lg:border-b-0 lg:border-r lg:border-white/10">
-                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan-200/80 sm:text-xs">Medical · fitness</p>
-                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">ARETEUS Chestpad</h3>
+                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan-200/80 sm:text-xs">Research · fitness</p>
+                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">ARETEUS ChestPatch</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:mt-3 sm:text-[15px]">
-                  Continuous cardiopulmonary insight from a chest-focused wearable appropriate for clinical pathways and demanding training.
+                  Continuous cardiopulmonary insight from a chest-focused wearable appropriate for research environments and demanding training.
                 </p>
                 <ul className="mt-5 space-y-2 sm:mt-6" role="list">
-                  {chestpadSensors.map((label) => (
+                  {chestPatchSensors.map((label) => (
                     <li
                       key={label}
                       className="flex items-start gap-2.5 text-sm text-slate-100 sm:text-[15px]"
@@ -176,7 +176,7 @@ export default function Home() {
               <div className="relative aspect-[16/11] min-h-[180px] bg-slate-900 sm:aspect-auto sm:min-h-[220px] lg:min-h-full">
                 <img
                   src="https://i.imgur.com/FyarXK2.png"
-                  alt="ARETEUS Chestpad"
+                  alt="ARETEUS ChestPatch"
                   className="h-full w-full object-cover object-center opacity-[0.97]"
                   referrerPolicy="no-referrer"
                 />
@@ -314,7 +314,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <motion.div {...fadeUp}>
             <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-4xl md:text-6xl">
-              Transform the way you monitor the human body
+              Transform the way you track the human body
             </h2>
             <p className="mt-3 text-sm text-slate-400 sm:text-base">Tell us about your use case, we’ll help you evaluate fit.</p>
             <div className="mt-8 sm:mt-9">

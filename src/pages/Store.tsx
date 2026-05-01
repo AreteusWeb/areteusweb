@@ -10,13 +10,13 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || 'pk_t
 
 const products = [
   {
-    id: 'areteus-chestpad',
-    name: 'ARETEUS Chestpad',
+    id: 'areteus-chestpatch',
+    name: 'ARETEUS ChestPatch',
     stripePriceId: import.meta.env.VITE_STRIPE_PRICE_ID_CHESTPAD || '',
     price: 123,
-    description: 'Professional 12-lead ECG wearable for athletes and fitness enthusiasts interested in continuous monitoring.',
+    description: 'Advanced 12-lead ECG wearable for athletes and fitness enthusiasts interested in continuous body sensing.',
     image: 'https://i.imgur.com/FyarXK2.png',
-    features: ['12-lead ECG', 'AI insights', '24/7 monitoring']
+    features: ['12-lead ECG', 'AI insights', '24/7 tracking']
   },
   {
     id: 'areteus-full-body-tracker-system',
@@ -44,7 +44,7 @@ export default function Store() {
         </h1>
 
         <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-          Advanced wearable monitoring technology for continuous health tracking.
+          Advanced wearable sensing technology for continuous health tracking.
         </p>
       </section>
 
@@ -75,9 +75,11 @@ export default function Store() {
                     {product.name}
                   </h3>
 
+                  {/* Temporarily hide price
                   <span className="text-lg md:text-xl text-blue-600 font-semibold">
                     ${product.price}
                   </span>
+                  */}
                 </div>
 
                 <p className="text-sm md:text-base text-slate-500 mb-5 leading-relaxed">
@@ -97,12 +99,22 @@ export default function Store() {
                 </ul>
 
                 {/* BUTTON */}
+                {/* Original Buy Now button (kept for future use)
                 <button
                   onClick={() => setSelectedProduct(product)}
                   className="mt-auto w-full bg-blue-600 text-white py-3 rounded-xl text-xs uppercase tracking-widest hover:bg-blue-500 transition flex items-center justify-center gap-2"
                 >
                   Buy Now
                   <ArrowRight className="w-4 h-4" />
+                </button>
+                */}
+
+                {/* New disabled button */}
+                <button
+                  disabled
+                  className="mt-auto w-full bg-slate-200 text-slate-500 py-3 rounded-xl text-xs uppercase tracking-widest cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  Available soon
                 </button>
 
               </div>
