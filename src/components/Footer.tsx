@@ -34,6 +34,7 @@ export default function Footer() {
                 <li><Link to="/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Home</Link></li>
                 <li><Link to="/partners" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Partners</Link></li>
                 <li><Link to="/careers" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Careers</Link></li>
+                <li><Link to="/technology" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Technology</Link></li>
               </ul>
             </div>
             <div>
@@ -58,7 +59,7 @@ export default function Footer() {
         <div className="pt-6 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col gap-3 w-full">
             <p className="text-[10px] text-slate-500 font-medium tracking-tight leading-relaxed">
-              <span className="font-bold">Disclaimer:</span> This product is designed for entertainment and educational purposes only. It is not intended for medical diagnosis, treatment, or any healthcare decision-making. Please do not rely on this device for medical advice or diagnosis. Always consult with qualified healthcare professionals for any health-related concerns.
+              <span className="font-bold">Disclaimer:</span> The products are designed for entertainment and educational purposes only. It is not intended for medical diagnosis, treatment, or any healthcare decision-making. Please do not rely on this device for medical advice or diagnosis. Always consult with qualified healthcare professionals for any health-related concerns.
             </p>
             <p className="text-[10px] text-slate-400 font-medium tracking-tight">
               © {new Date().getFullYear()} ARETEUS. Designed for the future of health.

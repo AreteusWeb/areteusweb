@@ -8,6 +8,7 @@ import Careers from '@/pages/Careers';
 import Partners from '@/pages/Partners';
 import Contact from '@/pages/Contact';
 import Store from '@/pages/Store';
+import Technology from '@/pages/Technology';
 import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 import TermsOfService from '@/pages/legal/TermsOfService';
 import CookiePolicy from '@/pages/legal/CookiePolicy';
@@ -33,6 +34,7 @@ export default function App() {
                 <Route path="/privacy" element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />
                 <Route path="/terms" element={<PageWrapper><TermsOfService /></PageWrapper>} />
                 <Route path="/cookies" element={<PageWrapper><CookiePolicy /></PageWrapper>} />
+                <Route path="/technology" element={<PageWrapper><Technology /></PageWrapper>} />
               </Routes>
             </AnimatePresence>
             <Footer />
