@@ -4,17 +4,12 @@ import {
   Cpu, 
   Layers, 
   Zap, 
-  ShieldCheck, 
   ChevronRight, 
   Circle,
   Activity,
   Waves,
   Thermometer,
-  Network,
-  Binary,
-  Monitor,
   HeartPulse,
-  Brain,
   Smartphone,
   Dumbbell,
   Target,
@@ -45,20 +40,20 @@ export default function Technology() {
               ARETEUS <span className="text-gradient">Technology</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-[1.125rem] leading-relaxed text-slate-600 md:text-2xl">
-              From single-node sensing to full-body wearable networks.
+              Precision chest-worn sensing for continuous physiological insight.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. CHESTPATCH */}
+      {/* 2. THE PATCH */}
       <section className="scroll-mt-24 px-4 py-20 bg-white sm:px-6 md:py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div {...fadeUp}>
-              <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">ChestPatch</h2>
+              <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">The Patch</h2>
               <p className="mt-6 text-lg leading-relaxed text-slate-600">
-                ChestPatch is a lightweight wearable sensing device designed for continuous physiological tracking. It captures key body signals and serves as a compact entry point into the Areteus technology platform.
+                The Patch is a lightweight wearable sensing device designed for continuous physiological tracking. It captures key body signals and serves as a compact entry point into the Areteus technology platform.
               </p>
 
               <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -103,7 +98,7 @@ export default function Technology() {
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium p-12 text-center group">
                 <img 
                   src="https://i.imgur.com/FyarXK2.png" 
-                  alt="ChestPatch Sensor Placement"
+                  alt="The Patch Sensor Placement"
                   className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
@@ -113,74 +108,7 @@ export default function Technology() {
         </div>
       </section>
 
-      {/* 3. BODY NETWORK */}
-      <section className="scroll-mt-24 px-4 py-20 bg-slate-50 sm:px-6 md:py-32">
-        <div className="mx-auto max-w-6xl text-center mb-16">
-          <motion.div {...fadeUp}>
-            <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">Body Network</h2>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
-              The Body Network connects multiple wearable nodes across the body into a unified system for sensing, interaction, and computation.
-            </p>
-          </motion.div>
-        </div>
-
-        <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-2 lg:items-center">
-          <motion.div {...fadeUp} className="order-2 lg:order-1">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { title: 'Multiple Nodes', desc: 'Connects multiple nodes across the body', icon: Network },
-                { title: 'Synchronization', desc: 'Synchronizes sensing and interaction', icon: Zap },
-                { title: 'Modular', desc: 'Supports modular expansion', icon: Layers },
-                { title: 'Unified Control', desc: 'Enables full-body data and control', icon: Cpu },
-              ].map((cap) => (
-                <div key={cap.title} className="p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-900 text-white mb-4">
-                    <cap.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-slate-900 mb-2">{cap.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{cap.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 bg-white rounded-3xl border border-slate-200 p-8">
-              <h4 className="font-display text-xl font-bold text-slate-900 mb-6">Node Types</h4>
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { name: 'Physiological', icon: HeartPulse },
-                  { name: 'Motion/IMU', icon: Binary },
-                  { name: 'Displays/Touch', icon: Monitor },
-                  { name: 'Audio/AI', icon: Brain },
-                ].map((node) => (
-                  <div key={node.name} className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                      <node.icon className="h-5 w-5" />
-                    </div>
-                    <span className="font-semibold text-slate-800">{node.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            {...fadeUp}
-            className="order-1 lg:order-2 relative aspect-[3/4] overflow-hidden rounded-[60px] bg-slate-900 border border-slate-800 shadow-3xl"
-          >
-             <div className="absolute inset-0 bg-blue-600/10 blur-[100px]" />
-             <div className="flex items-center justify-center h-full">
-                <img 
-                  src="https://i.imgur.com/LcMM8uj.jpeg" 
-                  alt="Body Network Visualization"
-                  className="h-full w-full object-cover opacity-80"
-                  referrerPolicy="no-referrer"
-                />
-             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 4. PLATFORM ARCHITECTURE */}
+      {/* 3. PLATFORM ARCHITECTURE */}
       <section className="px-4 py-20 bg-white sm:px-6 md:py-32 border-t border-slate-100">
         <div className="mx-auto max-w-5xl">
           <motion.div {...fadeUp} className="text-center mb-16">
@@ -223,59 +151,6 @@ export default function Technology() {
         </div>
       </section>
 
-      {/* 5. POWER & COMMUNICATION */}
-      <section className="px-4 py-20 bg-slate-950 sm:px-6 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-dark opacity-10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px]" />
-        
-        <div className="mx-auto max-w-6xl relative z-10">
-          <motion.div {...fadeUp} className="text-center mb-16">
-            <h2 className="font-display text-3xl font-black tracking-tight text-white sm:text-4xl md:text-6xl">Unified Power & Communication</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
-              A shared 2-wire architecture enables both power delivery and data communication across all nodes.
-            </p>
-          </motion.div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {[
-              {
-                title: 'Low Power Mode',
-                voltage: '~3.3V',
-                features: ['Optimized for sensors', 'Efficient continuous operation'],
-                icon: Zap
-              },
-              {
-                title: 'High Power Mode',
-                voltage: '~12V',
-                features: ['Supports displays, audio, AI', 'Higher capability nodes'],
-                icon: ShieldCheck
-              }
-            ].map((mode) => (
-              <motion.div 
-                key={mode.title}
-                {...fadeUp}
-                className="p-8 md:p-12 rounded-[40px] bg-white/5 border border-white/10 backdrop-blur-sm"
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-400/20 text-cyan-400">
-                    <mode.icon className="h-6 w-6" />
-                  </div>
-                  <div className="text-2xl font-black text-cyan-400 font-display">{mode.voltage}</div>
-                </div>
-                <h3 className="font-display text-2xl font-black text-white mb-6 tracking-tight">{mode.title}</h3>
-                <ul className="space-y-3">
-                  {mode.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-slate-400">
-                      <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-                      <span className="font-medium">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 6. OPEN PLATFORM */}
       <section className="px-4 py-20 bg-white sm:px-6 md:py-32">
@@ -341,8 +216,8 @@ export default function Technology() {
                 {[
                   { title: 'Wellness and body sensing', icon: HeartPulse },
                   { title: 'Fitness and performance tracking', icon: Dumbbell },
-                  { title: 'Movement and posture awareness', icon: Target },
-                  { title: 'AI-assisted wearable interaction', icon: Smartphone }
+                  { title: 'Sleep & recovery tracking', icon: Activity },
+                  { title: 'Continuous cardiac monitoring', icon: Zap }
                 ].map((item) => (
                   <li key={item.title} className="flex items-center gap-6 group">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-50 text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
@@ -363,10 +238,10 @@ export default function Technology() {
               <h3 className="font-display text-3xl font-black text-white mb-10 tracking-tight relative z-10">Professional</h3>
               <ul className="space-y-6 relative z-10">
                 {[
-                  { title: 'Research platforms', icon: Microscope },
-                  { title: 'Rehabilitation systems', icon: Network },
-                  { title: 'Training and ergonomics', icon: Activity },
-                  { title: 'Industrial applications', icon: Smartphone }
+                  { title: 'Clinical cardiology studies', icon: Microscope },
+                  { title: 'Athlete biometric analysis', icon: Target },
+                  { title: 'Remote patient monitoring', icon: Smartphone },
+                  { title: 'Sports science labs', icon: Dumbbell }
                 ].map((item) => (
                   <li key={item.title} className="flex items-center gap-6 group">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-slate-400 group-hover:bg-cyan-400 group-hover:text-slate-900 transition-all border border-white/5">

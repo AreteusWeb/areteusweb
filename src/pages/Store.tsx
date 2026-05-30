@@ -10,22 +10,13 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || 'pk_t
 
 const products = [
   {
-    id: 'areteus-chestpatch',
-    name: 'ARETEUS ChestPatch',
+    id: 'areteus-the-patch',
+    name: 'The Patch',
     stripePriceId: import.meta.env.VITE_STRIPE_PRICE_ID_CHESTPAD || '',
     price: 123,
     description: 'Advanced 12-lead ECG wearable for athletes and fitness enthusiasts interested in continuous body sensing.',
     image: 'https://i.imgur.com/FyarXK2.png',
     features: ['12-lead ECG', 'AI insights', '24/7 tracking']
-  },
-  {
-    id: 'areteus-full-body-tracker-system',
-    name: 'ARETEUS Full Body Tracker',
-    stripePriceId: import.meta.env.VITE_STRIPE_PRICE_ID_FULL_BODY_TRACKER || '',
-    price: 999.99,
-    description: 'Distributed full-body motion tracking system with wearable sensor nodes.',
-    image: 'https://i.imgur.com/LcMM8uj.jpeg',
-    features: ['Full-body tracking', 'Low latency', 'Scalable nodes']
   }
 ];
 
@@ -50,7 +41,7 @@ export default function Store() {
 
       {/* 🔥 PRODUCTS GRID */}
       <section className="px-6 mb-32">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="max-w-3xl mx-auto">
           
           {products.map((product) => (
             <motion.div

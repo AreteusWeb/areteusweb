@@ -172,8 +172,7 @@ async function startServer() {
         resolvedPriceId = priceId.trim();
       } else if (typeof productId === 'string') {
         const productPriceMap: Record<string, string | undefined> = {
-          'areteus-chestpad': process.env.STRIPE_PRICE_ID_CHESTPAD,
-          'areteus-full-body-tracker-system': process.env.STRIPE_PRICE_ID_FULL_BODY_TRACKER,
+          'areteus-the-patch': process.env.STRIPE_PRICE_ID_CHESTPAD,
         };
         resolvedPriceId = productPriceMap[productId];
       }

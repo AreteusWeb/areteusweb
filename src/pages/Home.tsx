@@ -6,11 +6,10 @@ import {
   Circle,
   Database,
   Dumbbell,
-  Gamepad2,
+  Activity,
   Layers,
   Microscope,
   Radio,
-  Sparkles,
   HeartPulse,
   TabletSmartphone,
   Target,
@@ -24,9 +23,7 @@ const fadeUp = {
   transition: { duration: 0.4, ease: 'easeOut' },
 } as const;
 
-const chestPatchSensors = ['ECG', 'SpO2', 'Temperature', 'Blood pressure'];
-
-const fullBodyHighlights = ['Full body motion tracking', 'VR compatibility', 'Research applications'];
+const patchSensors = ['ECG', 'SpO2', 'Temperature', 'Blood pressure'];
 
 const platformFeatures = [
   {
@@ -76,7 +73,7 @@ const useCases = [
   { title: 'Wellness', icon: HeartPulse },
   { title: 'Sports performance', icon: Dumbbell },
   { title: 'Research & biomechanics', icon: Microscope },
-  { title: 'VR / motion', icon: Gamepad2 },
+  { title: 'Cardiac monitoring', icon: Activity },
 ];
 
 export default function Home() {
@@ -135,11 +132,11 @@ export default function Home() {
           <motion.div {...fadeUp} className="mb-8 text-center sm:mb-10 md:mb-12">
             <h2 className="font-display text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-6xl">Products</h2>
             <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:mt-3 sm:text-base">
-              Two lines, chest-centered vitals and full-body motion, each engineered for different environments.
+              Chest-centered vitals engineered for research and real-world performance.
             </p>
           </motion.div>
 
-          {/* ChestPatch */}
+          {/* The Patch */}
           <motion.article
             {...fadeUp}
             className="mb-8 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-[0_20px_50px_-22px_rgba(2,6,23,0.65)] sm:mb-10 sm:rounded-3xl"
@@ -148,12 +145,12 @@ export default function Home() {
             <div className="relative grid gap-0 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] lg:items-stretch">
               <div className="border-b border-white/10 p-5 sm:p-7 md:p-9 lg:border-b-0 lg:border-r lg:border-white/10">
                 <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan-200/80 sm:text-xs">Research · fitness</p>
-                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">ARETEUS ChestPatch</h3>
+                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">The Patch</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:mt-3 sm:text-[15px]">
                   Continuous cardiopulmonary insight from a chest-focused wearable appropriate for research environments and demanding training.
                 </p>
                 <ul className="mt-5 space-y-2 sm:mt-6" role="list">
-                  {chestPatchSensors.map((label) => (
+                  {patchSensors.map((label) => (
                     <li
                       key={label}
                       className="flex items-start gap-2.5 text-sm text-slate-100 sm:text-[15px]"
@@ -176,53 +173,10 @@ export default function Home() {
               <div className="relative aspect-[16/11] min-h-[180px] bg-slate-900 sm:aspect-auto sm:min-h-[220px] lg:min-h-full">
                 <img
                   src="https://i.imgur.com/FyarXK2.png"
-                  alt="ARETEUS ChestPatch"
+                  alt="The Patch"
                   className="h-full w-full object-cover object-center opacity-[0.97]"
                   referrerPolicy="no-referrer"
                 />
-              </div>
-            </div>
-          </motion.article>
-
-          {/* Full Body Tracker */}
-          <motion.article
-            {...fadeUp}
-            transition={{ ...fadeUp.transition, delay: 0.05 }}
-            className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-[0_20px_50px_-22px_rgba(2,6,23,0.65)] sm:rounded-3xl"
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_90%_20%,rgba(34,211,238,0.12),transparent_55%)]" />
-            <div className="relative grid gap-0 lg:grid-cols-[minmax(0,0.95fr)_1.05fr] lg:items-stretch">
-              <div className="relative order-2 aspect-[16/11] min-h-[180px] bg-slate-900 sm:aspect-auto sm:min-h-[220px] lg:order-1 lg:min-h-full">
-                <img
-                  src="https://i.imgur.com/LcMM8uj.jpeg"
-                  alt="ARETEUS Full Body Tracker"
-                  className="h-full w-full object-cover object-center opacity-[0.97]"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="order-1 border-b border-white/10 p-5 sm:p-7 md:p-9 lg:order-2 lg:border-b-0 lg:border-l lg:border-white/10">
-                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan-200/80 sm:text-xs">Motion · spatial</p>
-                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl md:text-4xl">ARETEUS Full Body Tracker</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:mt-3 sm:text-[15px]">
-                  Distributed capture for full-body motion built for immersive environments, biomechanics labs, and advanced analytics.
-                </p>
-                <ul className="mt-5 space-y-2 sm:mt-6" role="list">
-                  {fullBodyHighlights.map((label) => (
-                    <li key={label} className="flex items-start gap-2.5 text-sm text-slate-100 sm:text-[15px]">
-                      <Circle className="mt-1 h-2 w-2 shrink-0 fill-cyan-400 text-cyan-400" aria-hidden />
-                      <span>{label}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 sm:mt-8">
-                  <Link
-                    to="/store"
-                    className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-[15px] font-medium text-slate-950 transition hover:bg-cyan-300 sm:w-auto sm:px-6"
-                  >
-                    Explore product
-                    <ArrowRight className="h-4 w-4" aria-hidden />
-                  </Link>
-                </div>
               </div>
             </div>
           </motion.article>
