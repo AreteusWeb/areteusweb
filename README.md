@@ -6,7 +6,7 @@ This is the company website for Areteus, a business specializing in technology a
 
 The website is deployed and can be viewed live at:
 
-[https://areteus-company.web.app/](https://areteus-company.web.app/)
+[https://areteus-company.web.app/]([https://areteus-company.web.app](https://project-37274da8-813d-4f1e-8b9.web.app/)/)
 
 ## Repository Structure 
 
