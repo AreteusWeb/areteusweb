@@ -75,7 +75,8 @@ async function startServer() {
   app.use(cors({
     origin: [
       "http://localhost:5173",
-      "https://project-37274da8-813d-4f1e-8b9.web.app",
+      "https://areteus.com",
+      "https://www.areteus.com",
       "https://areteus.us"
     ]
   }));

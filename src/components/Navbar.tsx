@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'Careers', path: '/careers' },
   { name: 'Partners', path: '/partners' },
   { name: 'Contact', path: '/contact' },
+  { name: 'Get Started', path: '/get-started' },
 ];
 
 export default function Navbar() {

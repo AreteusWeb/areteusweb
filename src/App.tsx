@@ -9,6 +9,7 @@ import Partners from '@/pages/Partners';
 import Contact from '@/pages/Contact';
 import Store from '@/pages/Store';
 import Technology from '@/pages/Technology';
+import GetStarted from '@/pages/GetStarted';
 import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 import TermsOfService from '@/pages/legal/TermsOfService';
 import CookiePolicy from '@/pages/legal/CookiePolicy';
@@ -35,6 +36,7 @@ export default function App() {
                 <Route path="/terms" element={<PageWrapper><TermsOfService /></PageWrapper>} />
                 <Route path="/cookies" element={<PageWrapper><CookiePolicy /></PageWrapper>} />
                 <Route path="/technology" element={<PageWrapper><Technology /></PageWrapper>} />
+                <Route path="/get-started" element={<PageWrapper><GetStarted /></PageWrapper>} />
               </Routes>
             </AnimatePresence>
             <Footer />

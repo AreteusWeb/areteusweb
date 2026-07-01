@@ -51,21 +51,21 @@ const platformFeatures = [
 const howSteps = [
   {
     step: '01',
-    title: 'Wear device',
-    description: 'Comfortable fit for continuous capture without friction.',
-    icon: Watch,
+    title: 'Wear your Patch',
+    description: 'Place the Patch comfortably on your chest.',
+    icon: HeartPulse,
   },
   {
     step: '02',
-    title: 'Collect data',
-    description: 'Sensors stream vitals and motion with dependable throughput.',
-    icon: Database,
+    title: 'Connect your Patch',
+    description: 'Complete a quick setup to connect your Patch.',
+    icon: TabletSmartphone,
   },
   {
     step: '03',
-    title: 'Analyze in real time',
-    description: 'See trends as they form with responsive analytics.',
-    icon: BarChart3,
+    title: 'View your data',
+    description: 'Monitor your cardiovascular health from your phone.',
+    icon: Activity,
   },
 ];
 
@@ -214,7 +214,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="mb-8 text-center md:mb-11">
             <h2 className="font-display text-3xl font-black text-slate-900 sm:text-4xl md:text-6xl">How it works</h2>
-            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:text-base">From device to insight.</p>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 sm:text-base">From Patch to insights.</p>
           </motion.div>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4 lg:gap-6">
             {howSteps.map((step, index) => (
@@ -235,6 +235,41 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Existing Customers Onboarding CTA - Standalone Section */}
+      <section className="border-t border-b border-slate-200/60 bg-slate-50/40 px-4 py-14 sm:px-6 sm:py-18 md:py-20">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            {...fadeUp}
+            className="relative overflow-hidden rounded-3xl border border-slate-200/85 bg-white p-6 sm:p-8 md:p-10 shadow-sm"
+          >
+            {/* Subtle premium light blob */}
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-100/25 blur-3xl" />
+            <div className="pointer-events-none absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-cyan-100/15 blur-3xl" />
+
+            <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+              <div className="max-w-xl">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">
+                  Existing Customers
+                </span>
+                <h3 className="mt-3 font-display text-xl font-bold text-slate-900 sm:text-2xl">
+                  Already have your Patch?
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-[15px]">
+                  Set up your Patch in just a few minutes and start monitoring your cardiovascular health.
+                </p>
+              </div>
+              <Link
+                to="/get-started"
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] w-full sm:w-auto"
+              >
+                Get Started
+                <ArrowRight className="h-4 w-4 opacity-80" aria-hidden />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
