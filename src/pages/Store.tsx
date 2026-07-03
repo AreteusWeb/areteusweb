@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Zap, ArrowRight, X } from 'lucide-react';
+import { Zap, X } from 'lucide-react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '@/components/CheckoutForm';
@@ -16,80 +16,77 @@ const products = [
     price: 123,
     description: 'Advanced 12-lead ECG wearable for athletes and fitness enthusiasts interested in continuous body sensing.',
     image: 'https://i.imgur.com/FyarXK2.png',
-    features: ['12-lead ECG', 'AI insights', '24/7 tracking']
-  }
+    features: ['12-lead ECG', 'AI insights', '24/7 tracking'],
+  },
 ];
+
+const cardBase =
+  'rounded-xl border border-slate-200 bg-white transition-colors duration-200 hover:border-slate-300';
+const iconSquare =
+  'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-900 text-white';
 
 export default function Store() {
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
 
   return (
-    <main className="pt-48 pb-32 overflow-hidden">
-      
-      {/* HERO */}
-      <section className="px-6 mb-16 text-center relative">
-        <div className="absolute inset-0 bg-grid opacity-50 -z-10" />
-
-        <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-4 tracking-tight leading-[0.9] font-display">
-          ARETEUS <span className="text-gradient">Store</span>
-        </h1>
-
-        <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-          Advanced wearable sensing technology for continuous health tracking.
-        </p>
+    <main className="overflow-x-hidden bg-white pb-24">
+      {/* Hero */}
+      <section className="border-b border-slate-200 px-6 pb-16 pt-32 text-center sm:px-8 sm:pt-40 md:pb-20 md:pt-48">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl md:text-7xl">
+            ARETEUS{' '}
+            <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+              Store
+            </span>
+          </h1>
+          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-slate-500 sm:mt-6 sm:text-lg">
+            Advanced wearable sensing technology for continuous health tracking.
+          </p>
+        </motion.div>
       </section>
 
-      {/* 🔥 PRODUCTS GRID */}
-      <section className="px-6 mb-32">
-        <div className="max-w-3xl mx-auto">
-          
+      {/* Products */}
+      <section className="px-6 py-14 sm:px-8 md:py-20">
+        <div className="mx-auto max-w-md">
           {products.map((product) => (
             <motion.div
               key={product.id}
-              whileHover={{ y: -6 }}
-              className="bg-white rounded-[32px] border border-slate-100 p-6 shadow-premium flex flex-col"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className={`${cardBase} flex flex-col p-5`}
             >
-              {/* IMAGE */}
-              <div className="aspect-[4/3] rounded-[24px] overflow-hidden mb-6">
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              <div className="aspect-[4/3] overflow-hidden rounded-lg bg-slate-50">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="h-full w-full object-cover"
+                  referrerPolicy="no-referrer"
                 />
               </div>
 
-              {/* INFO */}
-              <div className="flex flex-col flex-1">
-                
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
-                    {product.name}
-                  </h3>
+              <div className="mt-6 flex flex-1 flex-col">
+                <h3 className="font-display text-xl font-semibold tracking-tight text-slate-900">
+                  {product.name}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{product.description}</p>
 
-                  {/* Temporarily hide price
-                  <span className="text-lg md:text-xl text-blue-600 font-semibold">
-                    ${product.price}
-                  </span>
-                  */}
-                </div>
-
-                <p className="text-sm md:text-base text-slate-500 mb-5 leading-relaxed">
-                  {product.description}
-                </p>
-
-                {/* FEATURES */}
-                <ul className="space-y-2 mb-6">
-                  {product.features.map((f, i) => (
-                    <li key={i} className="flex items-center gap-2 text-slate-600">
-                      <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center">
-                        <Zap className="w-3 h-3 text-blue-600" />
+                <ul className="mt-5 space-y-2.5">
+                  {product.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2.5 text-sm text-slate-700">
+                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100">
+                        <Zap className="h-3 w-3 text-slate-500" aria-hidden />
                       </div>
-                      <span className="text-sm">{f}</span>
+                      {f}
                     </li>
                   ))}
                 </ul>
 
-                {/* BUTTON */}
                 {/* Original Buy Now button (kept for future use)
                 <button
                   onClick={() => setSelectedProduct(product)}
@@ -100,66 +97,62 @@ export default function Store() {
                 </button>
                 */}
 
-                {/* New disabled button */}
                 <button
                   disabled
-                  className="mt-auto w-full bg-slate-200 text-slate-500 py-3 rounded-xl text-xs uppercase tracking-widest cursor-not-allowed flex items-center justify-center gap-2"
+                  className="mt-7 flex min-h-[46px] w-full cursor-not-allowed items-center justify-center rounded-full bg-slate-100 text-xs font-medium uppercase tracking-widest text-slate-400"
                 >
                   Available soon
                 </button>
-
               </div>
             </motion.div>
           ))}
-
         </div>
       </section>
 
-      {/* MODAL (sin cambios grandes) */}
+      {/* Modal */}
       <AnimatePresence>
         {selectedProduct && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/90 backdrop-blur-md">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 backdrop-blur-sm">
             <motion.div
-              initial={{ opacity: 0, y: 80 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 80 }}
-              className="bg-white rounded-t-[32px] md:rounded-[48px] w-full max-w-4xl p-6 md:p-16 relative"
+              exit={{ opacity: 0, y: 40 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="relative w-full max-w-4xl rounded-t-xl bg-white p-6 md:rounded-xl md:p-12"
             >
-              <button 
+              <button
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center"
+                className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:text-slate-900"
+                aria-label="Close"
               >
-                <X className="w-5 h-5" />
+                <X className="h-4 w-4" aria-hidden />
               </button>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                
+              <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
                 <div>
-                  <h2 className="text-3xl font-black mb-4">Complete Order</h2>
-                  <p className="text-slate-500 mb-8">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">Checkout</p>
+                  <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-slate-900">
+                    Complete order
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-500">
                     Securely purchase your {selectedProduct.name}.
                   </p>
 
-                  <div className="bg-slate-50 p-6 rounded-2xl mb-6">
-                    <div className="flex justify-between mb-2">
+                  <div className={`${cardBase} mt-6 p-5`}>
+                    <div className="flex justify-between text-sm text-slate-700">
                       <span>{selectedProduct.name}</span>
                       <span>${selectedProduct.price}</span>
                     </div>
-
-                    <div className="flex justify-between border-t pt-3">
+                    <div className="mt-3 flex justify-between border-t border-slate-200 pt-3 text-sm font-semibold text-slate-900">
                       <span>Total</span>
-                      <span className="text-blue-600">${selectedProduct.price}</span>
+                      <span>${selectedProduct.price}</span>
                     </div>
                   </div>
                 </div>
 
                 <Elements stripe={stripePromise}>
-                  <CheckoutForm 
-                    product={selectedProduct} 
-                    onSuccess={() => setSelectedProduct(null)} 
-                  />
+                  <CheckoutForm product={selectedProduct} onSuccess={() => setSelectedProduct(null)} />
                 </Elements>
-
               </div>
             </motion.div>
           </div>

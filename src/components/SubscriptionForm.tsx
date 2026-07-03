@@ -29,7 +29,7 @@ export default function SubscriptionForm() {
     if (!email) return;
 
     setStatus('loading');
-    
+
     const path = 'newsletter_subscriptions';
     try {
       // 1. Save to Firestore
@@ -50,31 +50,29 @@ export default function SubscriptionForm() {
   };
 
   return (
-    <section className="py-48 px-6 bg-slate-900 text-white overflow-hidden relative">
-      <div className="absolute inset-0 bg-grid-dark opacity-20" />
-      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[800px] h-[800px] bg-blue-600 rounded-full blur-[180px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-indigo-600 rounded-full blur-[180px] animate-pulse delay-700" />
-      </div>
-
-      <div className="max-w-5xl mx-auto text-center relative z-10">
+    <section className="bg-slate-950 px-6 py-16 sm:px-8 md:py-24">
+      <div className="mx-auto max-w-2xl text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-sm text-slate-400 mb-6">
-            Newsletter
-          </p>
-          <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tight leading-[0.9] font-display">
-            Stay Updated on the <br /> <span className="text-blue-500">Future of Health</span>
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">Newsletter</p>
+          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            Stay updated on the{' '}
+            <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              future of health
+            </span>
           </h2>
-          <p className="text-slate-400 text-lg md:text-xl mb-16 max-w-3xl mx-auto leading-relaxed">
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 sm:text-base">
             Join our newsletter to receive the latest breakthroughs in wearable ECG technology and health innovation.
           </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-3xl mx-auto p-3 glass-dark rounded-[40px] border border-white/10 shadow-2xl">
+          <form
+            onSubmit={handleSubmit}
+            className="mx-auto mt-9 flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-2 sm:flex-row"
+          >
             <input
               type="email"
               placeholder="Enter your email address"
@@ -82,21 +80,21 @@ export default function SubscriptionForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={status === 'loading' || status === 'success'}
-              className="flex-1 bg-transparent px-6 py-4 text-white placeholder:text-slate-500 focus:outline-none transition-all text-base"
+              className="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none"
             />
             <button
               type="submit"
               disabled={status === 'loading' || status === 'success'}
-              className="bg-blue-600 text-white px-8 py-4 rounded-[24px] font-semibold text-sm uppercase tracking-widest hover:bg-blue-500 active:scale-95 transition-all duration-500 flex items-center justify-center gap-3 disabled:opacity-50 shadow-xl shadow-blue-900/40"
+              className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-medium text-slate-950 transition hover:bg-slate-100 disabled:opacity-50"
             >
               {status === 'loading' ? (
-                <Loader2 className="w-6 h-6 animate-spin" />
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
               ) : status === 'success' ? (
-                <CheckCircle2 className="w-6 h-6 text-white" />
+                <CheckCircle2 className="h-4 w-4" aria-hidden />
               ) : (
                 <>
-                  Subscribe Now
-                  <Send className="w-5 h-5" />
+                  Subscribe
+                  <Send className="h-4 w-4" aria-hidden />
                 </>
               )}
             </button>
@@ -104,16 +102,16 @@ export default function SubscriptionForm() {
 
           {status === 'success' && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 flex items-center justify-center gap-3 text-blue-400 font-black text-sm uppercase tracking-widest"
+              className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-slate-300"
             >
-              <CheckCircle2 className="w-5 h-5" />
+              <CheckCircle2 className="h-4 w-4 text-cyan-400" aria-hidden />
               Thank you! Check your inbox for confirmation.
             </motion.div>
           )}
           {status === 'error' && (
-            <div className="mt-8 text-red-400 font-black text-sm uppercase tracking-widest">
+            <div className="mt-6 text-sm font-medium text-red-400">
               Something went wrong. Please try again.
             </div>
           )}

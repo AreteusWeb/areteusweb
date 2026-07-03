@@ -1,70 +1,102 @@
-import { HeartPulse, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const platformLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Partners', path: '/partners' },
+  { name: 'Careers', path: '/careers' },
+  { name: 'Technology', path: '/technology' },
+];
+
+const companyLinks = [
+  { name: 'About us', path: '/' },
+  { name: 'Contact', path: '/contact' },
+  { name: 'Store', path: '/store' },
+];
+
+const legalLinks = [
+  { name: 'Privacy policy', path: '/privacy' },
+  { name: 'Terms of service', path: '/terms' },
+  { name: 'Cookie policy', path: '/cookies' },
+];
+
+const linkClass = 'text-xs font-medium text-slate-500 transition-colors hover:text-slate-900';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-100 pt-12 pb-8 px-6 relative overflow-hidden bg-white">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full bg-grid opacity-20 -z-10" />
-
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 mb-10">
-          <div className="lg:col-span-4">
-            <Link to="/" className="inline-block mb-4 group">
+    <footer className="border-t border-slate-200 bg-white px-6 pb-8 pt-14 sm:px-8 md:pt-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-10 grid grid-cols-1 gap-10 md:mb-12 md:grid-cols-12 md:gap-14">
+          <div className="md:col-span-4">
+            <Link to="/" className="inline-block">
               <img
                 src="https://i.imgur.com/x2IeR9Y.png"
-                alt="ARETEUS Logo"
-                className="h-7 md:h-8 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                alt="ARETEUS"
+                className="h-7 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
             </Link>
-            <p className="text-xs md:text-sm text-slate-400 leading-relaxed font-medium mb-4 max-w-sm">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-500">
               Pioneering the future of intelligent sensing. Engineering the next evolution of human health.
             </p>
-            <div className="flex gap-4">
-              <a href="https://www.linkedin.com/company/areteus/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-900 hover:text-white transition-all duration-500 shadow-sm border border-slate-100">
-                <Linkedin className="w-3.5 h-3.5" />
-              </a>
-            </div>
+            <a
+              href="https://www.linkedin.com/company/areteus/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ARETEUS on LinkedIn"
+              className="mt-5 flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-400 transition-colors hover:border-slate-900 hover:text-slate-900"
+            >
+              <Linkedin className="h-4 w-4" aria-hidden />
+            </a>
           </div>
 
-          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8 lg:pl-20">
+          <div className="grid grid-cols-2 gap-8 md:col-span-8 md:grid-cols-3 md:pl-16">
             <div>
-              <h4 className="text-[9px] font-black text-slate-900 uppercase tracking-[0.2em] mb-4">Platform</h4>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Home</Link></li>
-                <li><Link to="/partners" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Partners</Link></li>
-                <li><Link to="/careers" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Careers</Link></li>
-                <li><Link to="/technology" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Technology</Link></li>
+              <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Platform</h4>
+              <ul className="mt-4 space-y-2.5">
+                {platformLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link to={link.path} className={linkClass}>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
-              <h4 className="text-[9px] font-black text-slate-900 uppercase tracking-[0.2em] mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">About Us</Link></li>
-                <li><Link to="/contact" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Contact</Link></li>
-                <li><Link to="/store" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Store</Link></li>
+              <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Company</h4>
+              <ul className="mt-4 space-y-2.5">
+                {companyLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link to={link.path} className={linkClass}>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-span-2 md:col-span-1">
-              <h4 className="text-[9px] font-black text-slate-900 uppercase tracking-[0.2em] mb-4">Legal</h4>
-              <ul className="space-y-2">
-                <li><Link to="/privacy" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Terms of Service</Link></li>
-                <li><Link to="/cookies" className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium">Cookie Policy</Link></li>
+              <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Legal</h4>
+              <ul className="mt-4 space-y-2.5">
+                {legalLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link to={link.path} className={linkClass}>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col gap-3 w-full">
-            <p className="text-[10px] text-slate-500 font-medium tracking-tight leading-relaxed">
-              <span className="font-bold">Disclaimer:</span> This product is a general-purpose wearable technology platform intended for wellness, fitness, and research use only. It is not a medical device and is not intended to diagnose, treat, cure, or prevent any disease or medical condition. The information provided by this system should not be used for medical or health-related decision-making. Always consult a qualified professional for advice.
-            </p>
-            <p className="text-[10px] text-slate-400 font-medium tracking-tight">
-              © {new Date().getFullYear()} ARETEUS. Designed for the future of health.
-            </p>
-          </div>
+        <div className="border-t border-slate-200 pt-6">
+          <p className="text-[11px] leading-relaxed text-slate-400">
+            <span className="font-semibold text-slate-500">Disclaimer:</span> This product is a general-purpose wearable technology platform intended for wellness, fitness, and research use only. It is not a medical device and is not intended to diagnose, treat, cure, or prevent any disease or medical condition. The information provided by this system should not be used for medical or health-related decision-making. Always consult a qualified professional for advice.
+          </p>
+          <p className="mt-3 text-[11px] text-slate-400">
+            © {new Date().getFullYear()} ARETEUS. Designed for the future of health.
+          </p>
         </div>
       </div>
     </footer>

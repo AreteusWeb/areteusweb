@@ -17,9 +17,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: #ffffff;
+    overscroll-behavior: none;
   }
   body {
-    background-color: #f1f5f9;
+    background-color: #ffffff;
     @apply antialiased text-slate-900 selection:bg-blue-100 selection:text-blue-900 font-sans;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -70,7 +72,7 @@
 }
 
 .bg-grid {
-  background-color: #f1f5f9;
+  background-color: #ffffff;
   background-size: 40px 40px;
   background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
 }

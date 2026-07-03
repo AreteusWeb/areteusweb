@@ -1,179 +1,153 @@
 import { motion } from 'motion/react';
-import { Briefcase, MapPin, Clock } from 'lucide-react';
+import { Briefcase, MapPin, Clock, ArrowRight } from 'lucide-react';
 
 const jobDetails = [
-  "Design hardware and PCBs (rigid and flexible) using KiCad",
-  "Write and debug firmware (ESP32, Arduino / ESP-IDF)",
-  "Assemble and solder SMT prototypes",
-  "Build wearable devices including fabric integration",
-  "Work across hardware and software in fast R&D cycles"
+  'Design hardware and PCBs (rigid and flexible) using KiCad',
+  'Write and debug firmware (ESP32, Arduino / ESP-IDF)',
+  'Assemble and solder SMT prototypes',
+  'Build wearable devices including fabric integration',
+  'Work across hardware and software in fast R&D cycles',
 ];
 
 const qualifications = [
-  "Hands-on experience with real projects (embedded systems, PCBs, wearables)",
-  "Strong self-motivation and work ethic",
-  "Good English communication skills",
-  "Degree not required — projects matter more",
-  "Available full-time on-site (Ciudad Juárez)"
+  'Hands-on experience with real projects (embedded systems, PCBs, wearables)',
+  'Strong self-motivation and work ethic',
+  'Good English communication skills',
+  'Degree not required — projects matter more',
+  'Available full-time on-site (Ciudad Juárez)',
 ];
+
+const tags = [
+  { label: 'Hardware', icon: null, accent: true },
+  { label: 'Cd. Juárez', icon: MapPin, accent: false },
+  { label: 'Full-time', icon: Briefcase, accent: false },
+  { label: 'Mon–Sat · 48 hrs', icon: Clock, accent: false },
+];
+
+const cardBase = 'rounded-xl border border-slate-200 bg-white';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 10 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.4, ease: 'easeOut' },
+} as const;
 
 export default function Careers() {
   return (
-    <main className="pt-24 md:pt-40 pb-16 md:pb-24 overflow-hidden">
+    <main className="overflow-x-hidden bg-white pb-24">
+      {/* Hero */}
+      <section className="border-b border-slate-200 px-6 pb-16 pt-32 text-center sm:px-8 sm:pt-40 md:pb-20 md:pt-48">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl md:text-7xl">
+            Build the future of
+            <br />
+            <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+              wearable technology
+            </span>
+          </h1>
 
-      {/* HERO */}
-      <section className="px-6 mb-16 md:mb-28 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-grid opacity-50 -z-10" />
+          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-slate-500 sm:mt-6 sm:text-lg">
+            Join our R&D team and work on real hardware, real systems, and next-generation wearable technology.
+          </p>
+        </motion.div>
+      </section>
 
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight font-display">
-              Build the Future of <br className="hidden md:block" />
-              <span className="text-gradient">Wearable Technology</span>
-            </h1>
-
-            <p className="text-base md:text-xl text-slate-500 max-w-2xl mx-auto">
-              Join our R&D team and work on real hardware, real systems, and next-generation wearable technology.
+      {/* Vision */}
+      <section className="border-b border-slate-200 bg-slate-950 px-6 py-16 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-xl text-center">
+          <motion.div {...fadeUp}>
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-cyan-300/80">Our vision</p>
+            <h2 className="mt-3 font-display text-2xl font-semibold text-white sm:text-3xl">
+              Advanced wearable systems
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-[15px]">
+              We're building next-generation wearable systems that combine sensing, hardware, and intelligent software into real-world products.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* VISION */}
-      <section className="border-t border-slate-800 bg-slate-950 px-6 py-20 md:py-28 mb-16 md:mb-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-dark opacity-20 pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] -z-10" />
-
-        <div className="max-w-4xl mx-auto text-center text-white relative z-10">
-          <div className="text-blue-500 text-[11px] font-medium tracking-[0.25em] uppercase mb-8">
-            Our Vision
-          </div>
-
-          <h2 className="text-3xl md:text-5xl font-black mb-6 font-display">
-            Advanced Wearable Systems
-          </h2>
-
-          <p className="text-base md:text-xl text-slate-400 leading-relaxed">
-            We are building next-generation wearable systems that combine sensing, hardware, and intelligent software into real-world products.
-          </p>
-        </div>
-      </section>
-
-      {/* JOB */}
-      <section className="px-6">
-        <div className="max-w-5xl mx-auto">
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-white p-6 md:p-10 rounded-[28px] md:rounded-[48px] border border-slate-100 shadow-premium hover:shadow-premium-hover transition-all duration-500">
-
-              {/* TOP */}
-              <div className="mb-6">
-                <div className="flex flex-wrap items-center gap-2 mb-4">
-
-                  <span className="px-3 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold tracking-widest">
-                    HARDWARE
-                  </span>
-
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-slate-50 border border-slate-100 text-[10px] text-slate-500 font-bold tracking-widest">
-                    <MapPin className="w-3 h-3" />
-                    CD. JUÁREZ
-                  </span>
-
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-slate-50 border border-slate-100 text-[10px] text-slate-500 font-bold tracking-widest">
-                    <Briefcase className="w-3 h-3" />
-                    FULL-TIME
-                  </span>
-
-                  {/* 👇 AQUÍ VA LO DE 48HRS BIEN PUESTO */}
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold tracking-widest">
-                    <Clock className="w-3 h-3" />
-                    MON–SAT · 48 HRS
-                  </span>
-
-                </div>
-
-                <h3 className="text-2xl md:text-4xl font-black text-slate-900 mb-2 font-display">
-                  Junior Hardware Engineer
-                </h3>
-
-                <p className="text-sm text-blue-600 font-semibold">
-                  Hands-on · Fast growth · Real products
-                </p>
-              </div>
-
-              {/* GRID */}
-              <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-
-                <div>
-                  <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4">
-                    What You’ll Do
-                  </h4>
-
-                  <ul className="space-y-3">
-                    {jobDetails.map((item, i) => (
-                      <li key={i} className="flex gap-3 text-sm text-slate-600">
-                        <div className="w-1.5 h-1.5 mt-2 rounded-full bg-blue-600" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4">
-                    Requirements
-                  </h4>
-
-                  <ul className="space-y-3">
-                    {qualifications.map((item, i) => (
-                      <li key={i} className="flex gap-3 text-sm text-slate-600">
-                        <div className="w-1.5 h-1.5 mt-2 rounded-full bg-blue-400" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* WHY */}
-              <div className="mt-8 pt-6 border-t border-slate-100">
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  You’ll work on real products, learn fast across hardware and software, and grow quickly.
-                </p>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-
-                <p className="text-sm text-slate-500">
-                  Apply with your projects (GitHub, videos, photos) at:
-                  <span className="ml-2 text-blue-600 font-semibold">
-                    info@areteus.us
-                  </span>
-                </p>
-
-                <a
-                  href="mailto:info@areteus.us"
-                  className="group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 text-white text-sm font-semibold hover:scale-[1.03] active:scale-[0.97] transition-all"
+      {/* Job */}
+      <section className="px-6 py-14 sm:px-8 md:py-20">
+        <div className="mx-auto max-w-3xl">
+          <motion.div {...fadeUp} className={`${cardBase} p-6 sm:p-9`}>
+            <div className="flex flex-wrap items-center gap-2">
+              {tags.map((tag) => (
+                <span
+                  key={tag.label}
+                  className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-widest ${tag.accent ? 'bg-slate-900 text-white' : 'border border-slate-200 text-slate-500'
+                    }`}
                 >
-                  Apply
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                  {tag.icon && <tag.icon className="h-3 w-3" aria-hidden />}
+                  {tag.label}
+                </span>
+              ))}
+            </div>
+
+            <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              Junior Hardware Engineer
+            </h3>
+            <p className="mt-1.5 text-sm font-medium text-cyan-600">
+              Hands-on · Fast growth · Real products
+            </p>
+
+            <div className="mt-8 grid gap-8 border-t border-slate-100 pt-8 md:grid-cols-2 md:gap-10">
+              <div>
+                <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  What you'll do
+                </h4>
+                <ul className="mt-4 space-y-3">
+                  {jobDetails.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-relaxed text-slate-600">
+                      <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
+              <div>
+                <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Requirements
+                </h4>
+                <ul className="mt-4 space-y-3">
+                  {qualifications.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-relaxed text-slate-600">
+                      <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8 border-t border-slate-100 pt-6">
+              <p className="text-sm leading-relaxed text-slate-500">
+                You'll work on real products, learn fast across hardware and software, and grow quickly.
+              </p>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <p className="text-sm text-slate-500">
+                Apply with your projects (GitHub, videos, photos) at{' '}
+                <span className="font-semibold text-slate-900">info@areteus.us</span>
+              </p>
+              <a
+                href="mailto:info@areteus.us"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-slate-900 px-6 text-sm font-medium text-white transition hover:bg-slate-700"
+              >
+                Apply
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
             </div>
           </motion.div>
         </div>
       </section>
-
     </main>
   );
 }

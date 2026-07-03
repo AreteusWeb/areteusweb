@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, HeartPulse, ArrowUpRight } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -11,7 +11,6 @@ const navLinks = [
   { name: 'Careers', path: '/careers' },
   { name: 'Partners', path: '/partners' },
   { name: 'Contact', path: '/contact' },
-  { name: 'Get Started', path: '/get-started' },
 ];
 
 export default function Navbar() {
@@ -20,10 +19,9 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 12);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -34,56 +32,75 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 md:px-6',
-        scrolled ? 'py-3 md:py-4' : 'py-5 md:py-7'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out border-b',
+        scrolled
+          ? 'bg-white/90 backdrop-blur-md border-slate-200/80'
+          : 'bg-transparent border-transparent'
       )}
     >
-      <div className={cn(
-        'max-w-7xl mx-auto flex items-center justify-between transition-all duration-500 rounded-2xl md:rounded-full border',
-        scrolled
-          ? 'bg-white/85 backdrop-blur-xl border-slate-200 shadow-[0_18px_70px_-35px_rgba(15,23,42,0.45)] px-4 md:px-6 py-2.5'
-          : 'bg-white/70 backdrop-blur-lg border-slate-200/80 px-4 md:px-6 py-3'
-      )}>
-        <Link to="/" className="flex items-center gap-3 group transition-transform hover:scale-[1.02] active:scale-[0.99]">
-          <img 
-            src="https://i.imgur.com/x2IeR9Y.png" 
-            alt="ARETEUS Logo" 
-            className={cn('transition-all duration-500 object-contain', scrolled ? 'h-9 md:h-10' : 'h-11 md:h-12')}
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10">
+        <Link to="/" className="flex items-center gap-3 py-4">
+          <img
+            src="https://i.imgur.com/x2IeR9Y.png"
+            alt="ARETEUS"
+            className={cn(
+              'transition-all duration-300 object-contain',
+              scrolled ? 'h-8' : 'h-9'
+            )}
             referrerPolicy="no-referrer"
           />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-2">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={cn(
-                'relative px-4 lg:px-5 py-2 text-sm font-semibold transition-all duration-300 rounded-full',
-                location.pathname === link.path
-                  ? 'text-slate-900'
-                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100/80'
-              )}
-            >
-              {link.name}
-              {location.pathname === link.path && (
-                <motion.div
-                  layoutId="active-nav"
-                  className="absolute inset-0 bg-white rounded-full border border-slate-200 shadow-sm -z-10"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+        <div className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => {
+            const active = location.pathname === link.path;
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={cn(
+                  'relative py-6 text-[13px] font-medium tracking-wide uppercase transition-colors duration-200',
+                  active ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900'
+                )}
+              >
+                {link.name}
+                <span
+                  className={cn(
+                    'absolute left-0 -bottom-px h-px w-full bg-slate-900 origin-left transition-transform duration-300',
+                    active ? 'scale-x-100' : 'scale-x-0'
+                  )}
                 />
+              </Link>
+            );
+          })}
+
+          <Link
+            to="/get-started"
+            className={cn(
+              'relative py-6 text-[13px] font-medium tracking-wide uppercase transition-colors duration-200',
+              location.pathname === '/get-started'
+                ? 'text-slate-900'
+                : 'text-slate-500 hover:text-slate-900'
+            )}
+          >
+            Get Started
+            <span
+              className={cn(
+                'absolute left-0 -bottom-px h-px w-full bg-slate-900 origin-left transition-transform duration-300',
+                location.pathname === '/get-started' ? 'scale-x-100' : 'scale-x-0'
               )}
-            </Link>
-          ))}
+            />
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 text-slate-900 transition-colors hover:bg-slate-200" 
+        <button
+          className="md:hidden w-9 h-9 flex items-center justify-center text-slate-900"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -91,32 +108,38 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-full left-4 right-4 md:left-6 md:right-6 mt-3 bg-white/95 backdrop-blur-xl rounded-3xl p-5 flex flex-col gap-2 md:hidden shadow-2xl border border-slate-200"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="md:hidden overflow-hidden bg-white border-t border-slate-200"
           >
-            {navLinks.map((link, index) => (
-              <motion.div
-                key={link.path}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 + 0.1, duration: 0.5 }}
+            <div className="px-6 py-4 flex flex-col">
+              {navLinks.map((link) => {
+                const active = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={cn(
+                      'py-3.5 text-base font-medium border-b border-slate-100 transition-colors',
+                      active ? 'text-slate-900' : 'text-slate-500'
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+              <Link
+                to="/get-started"
+                className={cn(
+                  'py-3.5 text-base font-medium border-b border-slate-100 transition-colors',
+                  location.pathname === '/get-started' ? 'text-slate-900' : 'text-slate-500'
+                )}
               >
-                <Link
-                  to={link.path}
-                  className={cn(
-                    'text-lg font-semibold py-3.5 px-4 rounded-2xl transition-all duration-300 flex items-center',
-                    location.pathname === link.path 
-                      ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/25' 
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                  )}
-                >
-                  {link.name}
-                </Link>
-              </motion.div>
-            ))}
+                Get Started
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

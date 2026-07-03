@@ -33,7 +33,7 @@ export default function ReferralForm() {
     const path = 'referrals';
     try {
       // Save each referral individually
-      const promises = friendEmails.map(friendEmail => 
+      const promises = friendEmails.map(friendEmail =>
         addDoc(collection(db, path), {
           referrerName,
           referrerEmail,
@@ -71,30 +71,28 @@ export default function ReferralForm() {
   };
 
   return (
-    <section className="py-40 px-6 bg-slate-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-dark opacity-20" />
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] -z-10" />
-      
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
+    <section className="bg-slate-950 px-6 py-16 sm:px-8 md:py-24">
+      <div className="mx-auto flex max-w-5xl flex-col items-start gap-12 lg:flex-row lg:gap-16">
         <div className="flex-1">
-          <p className="text-sm text-slate-400 mb-6">
-             Referral Program
-          </p>
-          <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tight leading-[0.95] font-display">
-            Refer a Friend, <br /> <span className="text-blue-500">Earn Rewards</span>
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">Referral program</p>
+          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            Refer a friend,{' '}
+            <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              earn rewards
+            </span>
           </h2>
-          <p className="text-xl text-slate-400 leading-relaxed mb-12">
+          <p className="mt-4 text-sm leading-relaxed text-slate-400 sm:text-[15px]">
             Share the gift of heart health. When your friends make their first purchase, you'll receive a credit towards your next device or subscription.
           </p>
-          
-          <ul className="space-y-6">
+
+          <ul className="mt-8 space-y-4">
             {[
-              "Invite friends via email",
-              "They get a special discount",
-              "You earn rewards on their first purchase"
+              'Invite friends via email',
+              'They get a special discount',
+              "You earn rewards on their first purchase",
             ].map((item, i) => (
-              <li key={i} className="flex items-center gap-4 text-lg font-bold text-slate-200">
-                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs text-white">
+              <li key={item} className="flex items-center gap-3.5 text-sm font-medium text-slate-200">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-semibold text-white">
                   {i + 1}
                 </div>
                 {item}
@@ -104,55 +102,62 @@ export default function ReferralForm() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex-1 w-full max-w-2xl bg-white/5 backdrop-blur-md p-12 rounded-[64px] border border-white/10 shadow-2xl"
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full flex-1 rounded-xl border border-white/10 bg-white/5 p-6 sm:p-9"
         >
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-3">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2">Your Name</label>
-                <div className="relative group">
-                  <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div className="space-y-2">
+                <label className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Your name
+                </label>
+                <div className="relative">
+                  <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" aria-hidden />
                   <input
                     type="text"
                     required
                     value={referrerName}
                     onChange={(e) => setReferrerName(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl pl-16 pr-8 py-5 focus:outline-none focus:ring-4 focus:ring-blue-600/20 focus:bg-white/10 focus:border-blue-600 transition-all font-medium"
-                    placeholder="Your Name"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm font-medium text-white transition-all placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/5"
+                    placeholder="Your name"
                   />
                 </div>
               </div>
-              <div className="space-y-3">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2">Your Email</label>
-                <div className="relative group">
-                  <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+              <div className="space-y-2">
+                <label className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Your email
+                </label>
+                <div className="relative">
+                  <Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" aria-hidden />
                   <input
                     type="email"
                     required
                     value={referrerEmail}
                     onChange={(e) => setReferrerEmail(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl pl-16 pr-8 py-5 focus:outline-none focus:ring-4 focus:ring-blue-600/20 focus:bg-white/10 focus:border-blue-600 transition-all font-medium"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm font-medium text-white transition-all placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/5"
                     placeholder="your@email.com"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2">Friend's Emails</label>
+            <div className="space-y-3">
+              <label className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                Friend's emails
+              </label>
               {friendEmails.map((email, index) => (
-                <div key={index} className="relative group flex gap-3">
+                <div key={index} className="flex gap-2.5">
                   <div className="relative flex-1">
-                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" aria-hidden />
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => handleFriendEmailChange(index, e.target.value)}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl pl-16 pr-8 py-5 focus:outline-none focus:ring-4 focus:ring-blue-600/20 focus:bg-white/10 focus:border-blue-600 transition-all font-medium"
+                      className="w-full rounded-lg border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm font-medium text-white transition-all placeholder:text-slate-500 focus:border-white/30 focus:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/5"
                       placeholder="friend@email.com"
                     />
                   </div>
@@ -160,9 +165,10 @@ export default function ReferralForm() {
                     <button
                       type="button"
                       onClick={() => removeFriendField(index)}
-                      className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-slate-500 hover:bg-red-500/20 hover:text-red-500 transition-all"
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-500 transition-colors hover:border-red-500/30 hover:text-red-400"
+                      aria-label="Remove friend email"
                     >
-                      <X className="w-6 h-6" />
+                      <X className="h-4 w-4" aria-hidden />
                     </button>
                   )}
                 </div>
@@ -170,37 +176,37 @@ export default function ReferralForm() {
               <button
                 type="button"
                 onClick={addFriendField}
-                className="flex items-center gap-3 text-blue-400 font-black text-[10px] uppercase tracking-widest px-4 py-2 hover:text-blue-300 transition-colors"
+                className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300 transition-colors hover:text-cyan-200"
               >
-                <Plus className="w-4 h-4" />
-                Add Another Friend
+                <Plus className="h-3.5 w-3.5" aria-hidden />
+                Add another friend
               </button>
             </div>
 
             <button
               type="submit"
               disabled={status === 'loading' || status === 'success'}
-              className="w-full bg-blue-600 text-white py-6 rounded-3xl font-black text-sm uppercase tracking-widest hover:bg-blue-500 active:scale-[0.98] shadow-xl shadow-blue-900/40 transition-all duration-500 flex items-center justify-center gap-4 disabled:opacity-50"
+              className="flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-white text-sm font-medium text-slate-950 transition hover:bg-slate-100 disabled:opacity-50"
             >
               {status === 'loading' ? (
-                <Loader2 className="w-6 h-6 animate-spin" />
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
               ) : status === 'success' ? (
-                <CheckCircle2 className="w-6 h-6 text-white" />
+                <CheckCircle2 className="h-4 w-4" aria-hidden />
               ) : (
                 <>
-                  Send Invitations
-                  <Send className="w-5 h-5" />
+                  Send invitations
+                  <Send className="h-4 w-4" aria-hidden />
                 </>
               )}
             </button>
 
             {status === 'success' && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-center justify-center gap-3 text-blue-400 font-black text-sm uppercase tracking-widest"
+                className="flex items-center justify-center gap-2 text-sm font-medium text-slate-300"
               >
-                <CheckCircle2 className="w-5 h-5" />
+                <CheckCircle2 className="h-4 w-4 text-cyan-400" aria-hidden />
                 Invitations sent!
               </motion.div>
             )}

@@ -1,103 +1,83 @@
-import { motion } from "motion/react";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { motion } from 'motion/react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 const checklist = [
-  "Have your Areteus Patch nearby.",
-  "Enable Bluetooth on your phone, tablet, or computer.",
-  "Have the QR code that came with your device, or your Device ID."
+  'Have your ARETEUS Patch nearby.',
+  'Enable Bluetooth on your phone, tablet, or computer.',
+  'Have the QR code that came with your device, or your Device ID.',
 ];
+
+const cardBase = 'rounded-xl border border-slate-200 bg-white';
+const iconSquare = 'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-900 text-white';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 10 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.4, ease: 'easeOut' },
+} as const;
 
 export default function GetStarted() {
   return (
-    <main className="pt-40 pb-24 overflow-hidden">
-      <section className="relative px-6">
-        {/* Ambient Grid Background */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-grid opacity-50 -z-10" />
-
-        <div className="max-w-6xl mx-auto">
-
-          {/* Hero */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-5">
-              GET STARTED
+    <main className="overflow-x-hidden bg-white pb-24">
+      {/* Hero */}
+      <section className="border-b border-slate-200 px-6 pb-16 pt-32 text-center sm:px-8 sm:pt-40 md:pb-20 md:pt-48">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">Get started</p>
+          <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl md:text-7xl">
+            Set up your
+            <br />
+            <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+              ARETEUS Patch
             </span>
+          </h1>
+          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-slate-500 sm:mt-6 sm:text-lg">
+            Setting up your Patch only takes a few minutes. Before you begin, make sure everything is ready.
+          </p>
+        </motion.div>
+      </section>
 
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-[0.95] text-slate-900 font-display mb-6">
-              Set Up Your <br />
-              <span className="text-gradient">Areteus Patch</span>
-            </h1>
-
-            <p className="text-lg md:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto">
-              Setting up your Patch only takes a few minutes. Before you begin,
-              make sure everything is ready.
-            </p>
-          </motion.div>
-
-          {/* Checklist */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-            className="max-w-2xl mx-auto mt-16"
-          >
-            <div className="rounded-[32px] border border-slate-200 bg-white p-8 md:p-10 shadow-sm">
-
-              <h2 className="text-2xl font-bold text-slate-900 mb-8">
-                Before you begin
-              </h2>
-
-              <div className="space-y-6">
-                {checklist.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-4"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                      <ShieldCheck className="w-4 h-4 text-blue-600" />
-                    </div>
-
-                    <p className="text-slate-600 leading-relaxed">
-                      {item}
-                    </p>
+      {/* Checklist */}
+      <section className="px-6 py-14 sm:px-8 md:py-20">
+        <div className="mx-auto max-w-xl">
+          <motion.div {...fadeUp} className={`${cardBase} p-6 sm:p-9`}>
+            <h2 className="font-display text-lg font-semibold text-slate-900">Before you begin</h2>
+            <div className="mt-6 space-y-5">
+              {checklist.map((item) => (
+                <div key={item} className="flex items-start gap-3.5">
+                  <div className={iconSquare}>
+                    <ShieldCheck className="h-4 w-4" aria-hidden />
                   </div>
-                ))}
-              </div>
+                  <p className="pt-1 text-sm leading-relaxed text-slate-600">{item}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="max-w-2xl mx-auto text-center mt-16"
-          >
-            <h2 className="text-3xl font-black tracking-tight text-slate-900 mb-4 font-display">
-              Ready to begin?
-            </h2>
-
-            <p className="text-slate-500 leading-relaxed mb-8 max-w-md mx-auto">
-              Continue to setup to connect your Patch and complete the installation.
-            </p>
-
-            <a
-              href="https://setup.areteus.com"
-              target="_self"
-              className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-8 py-3.5 text-white font-semibold hover:bg-slate-800 transition shadow-sm active:scale-[0.99]"
-            >
-              Continue
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </motion.div>
-
         </div>
+      </section>
+
+      {/* CTA */}
+      <section className="px-6 pb-4 pt-2 text-center sm:px-8">
+        <motion.div {...fadeUp} className="mx-auto max-w-md">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            Ready to begin?
+          </h2>
+          <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-500">
+            Continue to setup to connect your Patch and complete the installation.
+          </p>
+          <a
+            href="https://setup.areteus.com"
+            target="_self"
+            className="mt-7 inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full bg-slate-900 px-7 text-sm font-medium text-white transition hover:bg-slate-700"
+          >
+            Continue
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </a>
+        </motion.div>
       </section>
     </main>
   );
