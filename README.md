@@ -1,12 +1,12 @@
 # Areteus Company Website
 
-This is the company website for Areteus, a business specializing in technology and innovative solutions.
+This is the company website for Areteus.
 
 ## Deployment
 
 The website is deployed and can be viewed live at:
 
-https://project-37274da8-813d-4f1e-8b9.web.app/
+https://areteus.com/
 
 ## Repository Structure 
 
