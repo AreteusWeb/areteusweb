@@ -67,16 +67,29 @@ export default function GetStarted() {
             Ready to begin?
           </h2>
           <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-500">
-            Continue to setup to connect your Patch and complete the installation.
+            First connect your Patch to the internet. Then you can open the app.
           </p>
+
           <a
             href="https://setup.areteus.com"
             target="_self"
-            className="mt-7 inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full bg-slate-900 px-7 text-sm font-medium text-white transition hover:bg-slate-700"
+            className="mt-8 inline-flex min-h-[52px] w-full max-w-sm items-center justify-center gap-2 rounded-full bg-slate-900 px-8 text-base font-semibold text-white transition hover:bg-slate-700 sm:min-h-[56px] sm:text-lg"
           >
-            Continue
-            <ArrowRight className="h-4 w-4" aria-hidden />
+            Connect to internet
+            <ArrowRight className="h-5 w-5" aria-hidden />
           </a>
+          <p className="mt-2 text-xs text-slate-400">setup.areteus.com</p>
+
+          <p className="mt-8 text-sm leading-relaxed text-slate-400">
+            Already connected your Patch to the internet?
+          </p>
+          <button
+            type="button"
+            disabled
+            className="mt-3 inline-flex min-h-[46px] w-full max-w-sm cursor-not-allowed items-center justify-center rounded-full bg-slate-100 px-7 text-sm font-medium text-slate-400"
+          >
+            Open the app — available soon
+          </button>
         </motion.div>
       </section>
     </main>
