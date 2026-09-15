@@ -3,11 +3,13 @@ import { motion } from 'motion/react';
 import { User, Mail, Plus, Send, CheckCircle2, Loader2, X } from 'lucide-react';
 import { db, handleFirestoreError, OperationType } from '@/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { HoneypotField } from '@/components/HoneypotField';
 
 export default function ReferralForm() {
   const [referrerName, setReferrerName] = useState('');
   const [referrerEmail, setReferrerEmail] = useState('');
   const [friendEmails, setFriendEmails] = useState(['']);
+  const [company, setCompany] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const addFriendField = () => {
@@ -30,9 +32,17 @@ export default function ReferralForm() {
 
     setStatus('loading');
 
+    if (company.trim()) {
+      setStatus('success');
+      setReferrerName('');
+      setReferrerEmail('');
+      setFriendEmails(['']);
+      setCompany('');
+      return;
+    }
+
     const path = 'referrals';
     try {
-      // Save each referral individually
       const promises = friendEmails.map(friendEmail =>
         addDoc(collection(db, path), {
           referrerName,
@@ -45,7 +55,6 @@ export default function ReferralForm() {
 
       await Promise.all(promises);
 
-      // 2. Send Referral Emails via Resend Backend
       try {
         await fetch(`${import.meta.env.VITE_API_URL}/api/send-referral-emails`, {
           method: 'POST',
@@ -54,6 +63,7 @@ export default function ReferralForm() {
             referrerName,
             referrerEmail,
             friendEmails,
+            company,
           }),
         });
       } catch (emailError) {
@@ -64,6 +74,7 @@ export default function ReferralForm() {
       setReferrerName('');
       setReferrerEmail('');
       setFriendEmails(['']);
+      setCompany('');
     } catch (error) {
       handleFirestoreError(error, OperationType.CREATE, path);
       setStatus('error');
@@ -108,7 +119,8 @@ export default function ReferralForm() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="w-full flex-1 rounded-xl border border-white/10 bg-white/5 p-6 sm:p-9"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="relative space-y-6">
+            <HoneypotField value={company} onChange={setCompany} />
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <label className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">

@@ -19,7 +19,9 @@
     "clsx": "^2.1.1",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
+    "escape-html": "^1.0.3",
     "express": "^4.21.2",
+    "express-rate-limit": "^8.7.0",
     "firebase": "^11.4.0",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
+    "@types/escape-html": "^1.0.4",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "@types/nodemailer": "^7.0.11",

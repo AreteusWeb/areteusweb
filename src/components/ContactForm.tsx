@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Send, CheckCircle2, Loader2, User, Mail, MessageSquare } from 'lucide-react';
 import { db, handleFirestoreError, OperationType } from '@/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { HoneypotField } from '@/components/HoneypotField';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -10,9 +11,10 @@ export default function ContactForm() {
     email: '',
     message: '',
   });
+  const [company, setCompany] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const sendEmail = async (data: typeof formData) => {
+  const sendEmail = async (data: typeof formData & { company: string }) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: 'POST',
@@ -32,19 +34,26 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus('loading');
 
+    // Bot filled honeypot — fake success, skip Firestore and API side-effects locally
+    if (company.trim()) {
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setCompany('');
+      return;
+    }
+
     const path = 'contact_submissions';
     try {
-      // 1. Save to Firestore
       await addDoc(collection(db, path), {
         ...formData,
         createdAt: serverTimestamp(),
       });
 
-      // 2. Send Email via Resend Backend
-      await sendEmail(formData);
+      await sendEmail({ ...formData, company });
 
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
+      setCompany('');
     } catch (error) {
       handleFirestoreError(error, OperationType.CREATE, path);
       setStatus('error');
@@ -91,7 +100,8 @@ export default function ContactForm() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="rounded-xl border border-slate-200 bg-white p-6 sm:p-9 lg:col-span-7"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="relative space-y-6">
+            <HoneypotField value={company} onChange={setCompany} />
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <label className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">

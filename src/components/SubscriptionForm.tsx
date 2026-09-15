@@ -3,17 +3,19 @@ import { motion } from 'motion/react';
 import { Send, CheckCircle2, Loader2 } from 'lucide-react';
 import { db, handleFirestoreError, OperationType } from '@/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { HoneypotField } from '@/components/HoneypotField';
 
 export default function SubscriptionForm() {
   const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const sendEmail = async (userEmail: string) => {
+  const sendEmail = async (userEmail: string, honeypot: string) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: userEmail }),
+        body: JSON.stringify({ email: userEmail, company: honeypot }),
       });
 
       if (!response.ok) {
@@ -30,19 +32,25 @@ export default function SubscriptionForm() {
 
     setStatus('loading');
 
+    if (company.trim()) {
+      setStatus('success');
+      setEmail('');
+      setCompany('');
+      return;
+    }
+
     const path = 'newsletter_subscriptions';
     try {
-      // 1. Save to Firestore
       await addDoc(collection(db, path), {
         email,
         createdAt: serverTimestamp(),
       });
 
-      // 2. Send Automatic Email via Resend Backend
-      await sendEmail(email);
+      await sendEmail(email, company);
 
       setStatus('success');
       setEmail('');
+      setCompany('');
     } catch (error) {
       handleFirestoreError(error, OperationType.CREATE, path);
       setStatus('error');
@@ -71,8 +79,9 @@ export default function SubscriptionForm() {
 
           <form
             onSubmit={handleSubmit}
-            className="mx-auto mt-9 flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-2 sm:flex-row"
+            className="relative mx-auto mt-9 flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-2 sm:flex-row"
           >
+            <HoneypotField value={company} onChange={setCompany} />
             <input
               type="email"
               placeholder="Enter your email address"
